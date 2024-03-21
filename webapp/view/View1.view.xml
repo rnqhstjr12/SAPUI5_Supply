@@ -1,0 +1,109 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    >
+    <Page id="page">
+        <content>
+            <ObjectHeader
+                icon="sap-icon://marketing-campaign"
+                title="공지사항"
+                backgroundDesign="Solid"
+            >
+            </ObjectHeader>
+            <IconTabBar applyContentPadding="false">
+                <items>
+                    <IconTabFilter
+                        icon="sap-icon://search"
+                        text="전체"
+                        count="1"
+                    />
+                    <IconTabFilter
+                        icon="sap-icon://marketing-campaign"
+                        text="공지"
+                        count="0"
+                        iconColor="Positive"
+                    />
+                    <IconTabFilter
+                        icon="sap-icon://horizontal-bar-chart"
+                        text="부서"
+                        count="0"
+                        iconColor="Critical"
+                    />
+                    <IconTabFilter
+                        icon="sap-icon://group"
+                        text="협업"
+                        count="0"
+                    />
+                    <IconTabFilter
+                        icon="sap-icon://employee-approvals"
+                        text="인사"
+                        count="1"
+                        iconColor="Neutral"
+                    />
+                </items>
+            </IconTabBar>
+            <Panel backgroundDesign="Transparent">
+                <Table id="noticeTable" backgroundDesign="Transparent">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title level="H3" text="전체 공지 (1)"/>
+                            <Button text="cardPage" press=".onView3" type="Emphasized"/>
+                            <Button text="chartPage" press=".onView4" type="Emphasized"/>
+                            <Button text="EndBoss" press=".onView6" type="Emphasized"/>
+                            <Button text="Study1" press=".onStudy1" type="Emphasized"/>
+                            <Button text="View7" press=".onView7" type="Emphasized"/>
+                            <ToolbarSpacer/>
+                            <SearchField width="13%" class="sapUiSmallMargin" placeholder="작성자 또는 제목"/>
+                            <Button icon="sap-icon://write-new"/>
+                            <Button icon="sap-icon://sort"/>
+                            <Button icon="sap-icon://filter"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="80rem">
+                            <Text text="제목"/>
+                        </Column>
+                        <Column>
+                            <Text text="분류"/>
+                        </Column>
+                        <Column>
+                            <Text text="작성자"/>
+                        </Column>
+                        <Column>
+                            <Text text="작성일"/>
+                        </Column>
+                        <Column width="5rem">
+                            <Text text="첨부파일"/>
+                        </Column>
+                        <Column width="5rem">
+                            <Text text="조회수"/>
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="onView2">
+                            <Text text="test" />
+                            <Text text="HR" />
+                            <Text text="이희준" />
+                            <Text text="2024-03-13" />
+                            <Button icon="sap-icon://attachment" type="Transparent" />
+                            <Text text="31" />
+                        </ColumnListItem>
+                    </items>
+                </Table>
+                <OverflowToolbar design="Transparent" style="Clear" class="buttonMargin">
+                    <HBox>
+                        <Button icon="sap-icon://close-command-field" type="Ghost"/>
+                        <Button icon="sap-icon://slim-arrow-left" type="Ghost"/>
+                        <Button text="1" type="Emphasized"/>
+                        <Button icon="sap-icon://slim-arrow-right" type="Ghost"/>
+                        <Button icon="sap-icon://open-command-field" type="Ghost"/>
+                    </HBox>
+                </OverflowToolbar>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

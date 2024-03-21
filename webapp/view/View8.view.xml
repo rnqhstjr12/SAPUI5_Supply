@@ -1,0 +1,564 @@
+<mvc:View 
+    controllerName="project1.controller.View8"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table">
+    <f:DynamicPage>
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Label text="Packing Spec > 사양서 작성 및 제출 : PM02ERP"/>
+                </f:heading>
+                <f:actions>
+                    <Button text="새로고침" icon="sap-icon://refresh" press="onRefresh"/>
+                    <Button text="표준사양서" />
+                    <Button text="과거사례" />
+                    <Button text="조회" />
+                    <Button text="사양서복사" />
+                    <Button text="사양서제출" />
+                    <Button text="동일사양" />
+                    <Button text="신규사항"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <form:SimpleForm editable="true">
+                        <form:content>
+                            <Label text="공장" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="fac">
+                                <core:Item key="HK11" text="HK11 울산 CKD 공장"/>
+                                <core:Item key="HK12" text="HK12 울산 CKD 공장"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Select>
+                            <Label text="포장사양분류" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Input id="option">
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Input>
+                            <Label text="작성의뢰번호" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <HBox>
+                                <Input id="requestNum"/>
+                                <Button icon="sap-icon://pdf-attachment"/>
+                                <Input id="progress"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </HBox>
+                            <Label text="납품업체" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1" linebreak="true"/>
+                                </layoutData>
+                            </Label>
+                            <HBox>
+                                <Input value="D005"/>
+                                <Input value="평화산업(주)"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </HBox>
+                            <Label text="자재번호" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <HBox>
+                                <Input id="number"/>
+                                <Input id="name"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </HBox>
+                            <Label text="국가/차종" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="car">
+                                <core:Item key="all" text="전체"/>
+                                <core:Item key="alll" text="저어언체"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Select>
+                            <Label text="적용사양번호" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <HBox>
+                                <Input value="" id="optionNum"/>
+                                <Button icon="sap-icon://search"/>
+                                <Input value="" id="submitCheck"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </HBox>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <IconTabBar id="TabBar" select=".onFilterSelect">
+                    <items>
+                        <IconTabFilter text="적입부품" key="part">
+                            <form:SimpleForm>
+                                <form:content>
+                                    <Toolbar>
+                                        <ToolbarSpacer />
+                                        <Button text="입력"/>
+                                        <Button text="수정" class="sapUiTinyMarginBegin"/>
+                                        <Button text="삭제" class="sapUiTinyMarginBegin"/>
+                                        <Button text="엑셀" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+                                    </Toolbar>
+                                    <form:SimpleForm>
+                                        <form:content>
+                                            <VBox alignItems="Center">
+                                                <Avatar src="" displaySize="Custom" customDisplaySize="250px" displayShape="Square" showBorder="true"/>
+                                                <Text text="부품사진"/>
+                                            </VBox>
+                                            <VBox alignItems="Center">
+                                                <Avatar src="" displaySize="Custom" customDisplaySize="250px" displayShape="Square" showBorder="true"/>
+                                                <Text text="적입부품"/>
+                                            </VBox>
+                                        </form:content>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL5 L5 M5 S12"/>
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+                                    <form:SimpleForm>
+                                        <form:content>
+                                            <Label text="자재번호">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <HBox>
+                                                <Input width="auto"/>
+                                                <Input width="auto"/>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </HBox>
+                                            <Label text="전화번호">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="Usage">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="작업수량">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="적입률">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="표면처리">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <CheckBox>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </CheckBox>
+                                            <Label text="재질">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Select>
+                                                <core:Item text="" key=""/>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Select>
+                                            <Label text="칼라">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <CheckBox>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </CheckBox>
+                                            <Label text="가로(mm)">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="세로(mm)">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="높이(mm)">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="두께(mm)">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="작성자명">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="무게(g)">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <Input>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </Input>
+                                            <Label text="특이사항">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <TextArea>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </TextArea>
+                                            <Label text="HMC의견">
+                                                <layoutData>
+                                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                                </layoutData>
+                                            </Label>
+                                            <TextArea>
+                                                <layoutData>
+                                                    <layout:GridData span="XL4 L4 M4 S4"/>
+                                                </layoutData>
+                                            </TextArea>
+                                        </form:content>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S12"/>
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+                                </form:content>
+                            </form:SimpleForm>
+                            <Toolbar>
+                                <Text text="적입부품 LIST" class="sapUiSmallMarginBegin"/>
+                            </Toolbar>
+                            <table:Table selectionMode="None" rows="">
+                                <table:columns>
+                                    <table:Column hAlign="Center" width="1%">
+                                        <Label text="" textAlign="Center"/>
+                                        <table:template>
+                                            <Button/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="자재번호" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="자재명" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="Usage" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="작업수량" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="적입률" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="표면처리" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="칼라" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="재질" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="가로" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="세로" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="높이" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="두께" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="부품중량" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="자재크기" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="담당자" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column hAlign="Center">
+                                        <Label text="전화번호" textAlign="Center"/>
+                                        <table:template>
+                                            <Text text=""/>
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+                        </IconTabFilter>
+                        <IconTabFilter text="동일사양부품" key="none1" enabled="false"/>
+                        <IconTabFilter text="포장재" key="none2" enabled="false"/>
+                        <IconTabFilter text="포장사양" key="none3" enabled="false"/>
+                        <IconTabFilter text="공수" key="airlift">
+                            <Toolbar>
+                                <Text text="공수정보" />
+                                <ToolbarSpacer />
+                                <Button text="입력"/>
+                                <Button text="수정" class="sapUiTinyMarginBegin"/>
+                                <Button text="삭제" class="sapUiTinyMarginBegin"/>
+                            </Toolbar>
+                            <content>
+                                <table:Table selectionMode="MultiToggle">
+                                    <table:columns>
+                                        <table:Column hAlign="Center">
+                                            <Label text="자재번호" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="자재크기" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장유형" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장방법" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Select>
+                                                    <core:Item text=""/>
+                                                </Select>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장방법상세" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="적입수량(EA)" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="중포장수" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Input />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="작업공수(중포장)" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="표준공산출식" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="OK" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                    </table:columns>
+                                </table:Table>
+                                <table:Table selectionMode="None">
+                                    <table:columns>
+                                        <table:Column hAlign="Center" width="1%">
+                                            <Label text="" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Button/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장유형" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장방법" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장방법상세" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장항목코드" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="포장항목코드명" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="작업시간" wrapping="false" textAlign="Center"/>
+                                            <table:template>
+                                                <Text text=""/>
+                                            </table:template>
+                                        </table:Column>
+                                    </table:columns>
+                                </table:Table>
+                            </content>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

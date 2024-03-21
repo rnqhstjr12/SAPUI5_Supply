@@ -1,0 +1,759 @@
+<mvc:View 
+    controllerName="project1.controller.View6"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:u="sap.ui.unified"
+>
+    <f:DynamicPage toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <form:SimpleForm>
+                        <form:content>
+                            <HBox>
+                            <Text text="Delivery Type"/>
+                            <RadioButtonGroup id="radio" >
+                                <RadioButton text="Delivery Schedule" selected="true"/>
+                                <RadioButton text="JIT Call" select="onCheck"/>
+                            </RadioButtonGroup>
+                                <layoutData>
+                                    <layout:GridData span="XL3 L3 M3 S3" />
+                                </layoutData>
+                            </HBox>
+                            <Label text="Vendor" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1" />
+                                </layoutData>
+                            </Label>
+                            <Input 
+                                id="vendorSearch"
+                                placeholder=" "
+                                showSuggestion="true" 
+                                showValueHelp="true" 
+                                valueHelpRequest=".onVendorValueHelp" 
+                                valueHelpOnly="true"
+                                change="onInputLiveChange"
+                                fieldGroupIds="Required,Search"
+                                required="true"
+                            >
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2" />
+                                </layoutData>
+                            </Input>
+                            <Label text="Plant" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1" />
+                                </layoutData>
+                            </Label>
+                            <Input 
+                                id="plantSearch"
+                                placeholder=" "
+                                showSuggestion="true" 
+                                showValueHelp="true" 
+                                valueHelpRequest=".onPlantValueHelp" 
+                                valueHelpOnly="true"
+                                change="onInputLiveChange"
+                                fieldGroupIds="Required,Search"
+                                required="true"
+
+                            >
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2" />
+                                </layoutData>
+                            </Input>
+                            <Label text="Material" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1" />
+                                </layoutData>
+                            </Label>
+                            <Input 
+                                id="matSearch"
+                                placeholder=" "
+                                showSuggestion="true" 
+                                showValueHelp="true" 
+                                valueHelpRequest=".onMaterialValueHelp" 
+                                valueHelpOnly="true"
+                                change="onInputLiveChange"
+                                fieldGroupIds="Required,Search"
+                                required="true"
+
+                            >
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2" />
+                                </layoutData>
+                            </Input>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:heading>
+                <f:actions>
+                    <Button text="Execute" type="Emphasized" class="sapUiSmallMarginEnd" press="onExecute"/>
+                    <Button icon="sap-icon://refresh" press="onExecuteRefresh" class="sapUiSmallMarginEnd"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <Toolbar style="Clear">
+                    <ToolbarSpacer/>
+                        <Button text="save" class="sapUiSmallMarginEnd" type="Transparent" icon="sap-icon://save" press="onSaveData"/>
+                        <Button id="pdf" text="PDF Print" class="sapUiSmallMarginEnd" type="Transparent" icon="sap-icon://pdf-attachment" press="onShowPDF" enabled="false"/>
+                        <Button text="Refresh" type="Transparent" icon="sap-icon://refresh" press="onSaveRefresh"/>
+                    </Toolbar>
+                    <form:SimpleForm editable="true" >
+                        <form:content >
+                            <form:SimpleForm >
+                                <form:content>
+                                    <form:SimpleForm>
+                                        <Title text="General Information" class="sapUiSmallMarginBottom"/>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+
+                                    <form:SimpleForm>
+                                        <VBox>
+                                            <Label text="Vendor" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL1 L1 M1 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Input 
+                                                id="vendorSave"
+                                                placeholder=" "
+                                                showSuggestion="true" 
+                                                showValueHelp="true" 
+                                                valueHelpRequest=".onVendor2ValueHelp" 
+                                                valueHelpOnly="true"
+                                                fieldGroupIds="Required,Save"
+                                                required="true"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"
+                                            />
+                                            <Text text="{save>/saveVendor}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+
+                                        <VBox>
+                                            <layoutData>
+                                                <layout:GridData span="XL1 L1 M1 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Departure Date" labelFor="dp1_1" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <DatePicker
+                                                id="dp1_1"
+                                                placeholder="Enter Date"
+                                                class="sapUiSmallMarginBottom"
+                                                fieldGroupIds="Required,Save"
+                                                displayFormat="yyyy-MM-dd"
+                                                valueFormat="yyyy-MM-dd"
+                                                change="onCheckDate"
+                                                required="true"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"
+                                            />
+                                            <Text text="{save>/savedp1_1}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <HBox>
+                                                <Label text=" " labelFor="dp1_2" wrapping="false"/>
+                                                <TimePicker
+                                                    id="dp1_2"
+                                                    placeholder=" "
+                                                    change="onCheckTime"
+                                                    class="sapUiSmallMarginBottom"
+                                                    fieldGroupIds="Required,Save"
+                                                    visible="{= ${save>/save} === 'notSave' ? true : false}"
+                                                />
+                                                <Text text="{save>/savedp1_2}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            </HBox>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+
+                                    <form:SimpleForm>
+                                        <VBox>
+                                            <Label text="Gate" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL1 L1 M1 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Input 
+                                                id="gateSave"
+                                                placeholder=" "
+                                                showSuggestion="true" 
+                                                showValueHelp="true" 
+                                                valueHelpRequest=".onGateValueHelp" 
+                                                valueHelpOnly="true"
+                                                fieldGroupIds="Required,Save"
+                                                required="true"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"
+                                            />
+                                            <Text text="{save>/saveGate}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <layoutData>
+                                                <layout:GridData span="XL1 L1 M1 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Arrival Date" labelFor="dp2_1" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <DatePicker
+                                                id="dp2_1"
+                                                placeholder="Enter Date"
+                                                class="sapUiSmallMarginBottom"
+                                                fieldGroupIds="Required,Save"
+                                                displayFormat="yyyy-MM-dd"
+                                                valueFormat="yyyy-MM-dd"
+                                                change="onCheckDate"
+                                                required="true"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"
+                                            />
+                                            <Text text="{save>/savedp2_1}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <HBox>
+                                                <Label text="" labelFor="dp2_2" wrapping="false"/>
+                                                <TimePicker
+                                                    id="dp2_2"
+                                                    placeholder=" "
+                                                    change="onCheckTime"
+                                                    class="sapUiSmallMarginBottom"
+                                                    fieldGroupIds="Required,Save"
+                                                    visible="{= ${save>/save} === 'notSave' ? true : false}"
+                                                />
+                                                <Text text="{save>/savedp2_2}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            </HBox>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+                                    
+                                    <form:SimpleForm>
+                                        <VBox>
+                                            <Label text="ASN No" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL1 L1 M1 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Input 
+                                                value="" 
+                                                enabled="false" 
+                                                required="true" 
+                                                fieldGroupIds="Required,singleSave" 
+                                                change="onInputLiveChange"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            <Text id="ASNNO" text="" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <layoutData>
+                                                <layout:GridData span="XL1 L1 M1 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Invoice No" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Input 
+                                                id="inputInvoiceNo"
+                                                value="" 
+                                                required="true" 
+                                                fieldGroupIds="Required,Save" 
+                                                change="onInputLiveChange"
+                                                type="Number"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            <Text text="{save>/saveInvoiceNo}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL7 L7 M7 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                            <form:SimpleForm>
+                                <form:content>
+                                    <form:SimpleForm>
+                                        <Title text="Transport Information" class="sapUiSmallMarginBottom"/>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+                                    <form:SimpleForm>
+                                        <VBox>
+                                            <Label text="Car No" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Input 
+                                                id="inputCarNo"
+                                                value="" 
+                                                required="true" 
+                                                fieldGroupIds="Required,Save" 
+                                                change="onInputLiveChange"
+                                                type="Number"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            <Text text="{save>/saveCarNo}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            <layoutData>
+                                                <layout:GridData span="XL3 L3 M3 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <layoutData>
+                                                <layout:GridData span="XL1 L1 M1 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Delivery to Location" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL3 L3 M3 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Select
+                                                id="selectDTL"
+                                                width="170px"
+                                                showSecondaryValues= "true"
+                                                fieldGroupIds="Required,Save"
+                                                required="true"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"
+                                                change="onInputLiveChange"
+                                            >
+                                                <core:Item text="선택" key="None"/>
+                                                <core:Item text="DTL1" key="DTL1"/>
+                                                <core:Item text="DTL2" key="DTL2"/>
+                                            </Select>
+                                            <Text text="{save>/saveDTL}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL3 L3 M3 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+
+                                    <form:SimpleForm>
+                                        <VBox>
+                                            <Label text="Driver Name" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Input 
+                                                id="inputDName"
+                                                value="" 
+                                                type="Text"
+                                                required="true" 
+                                                fieldGroupIds="Required,Save" 
+                                                change="onInputLiveChange"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            <Text text="{save>/saveDName}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            <layoutData>
+                                                <layout:GridData span="XL3 L3 M3 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+                                    
+                                    <form:SimpleForm>
+                                        <VBox>
+                                            <Label text="Driver Phone" wrapping="false"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Input 
+                                                id="inputDPhone"
+                                                value="" 
+                                                required="true" 
+                                                fieldGroupIds="Required,Save"
+                                                change="onInputLiveChange"
+                                                type="Number"
+                                                visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            <Text id="textDPhone" text="{save>/saveDPhone}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+
+                                            <layoutData>
+                                                <layout:GridData span="XL3 L3 M3 S6" />
+                                            </layoutData>
+                                        </VBox>
+                                        <form:layoutData>
+                                            <layout:GridData span="XL12 L12 M12 S12" />
+                                        </form:layoutData>
+                                    </form:SimpleForm>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL5 L5 M5 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <form:SimpleForm>
+                <form:content>
+                    <HBox backgroundDesign="Translucent" visible="{= ${check>/check} === 'DS' ? true : false}" id="miTablebox">
+                        <VBox class="sapUiSmallMarginEnd">
+                            <table:Table selectionMode="MultiToggle" minAutoRowCount="6" rows="{mainData>/}" id="DSTable">
+                                <table:extension>
+                                    <Toolbar style="Clear">  
+                                        <Title text="Material Information"/>
+                                        <ToolbarSpacer/>
+                                        <Button text="Upload Format" icon="sap-icon://excel-attachment" type="Transparent" press="onUploadFormat"/>
+                                        <u:FileUploader 
+                                            id="excel" 
+                                            name="excel"
+                                            buttonText="Upload" 
+                                            icon="sap-icon://create-form" 
+                                            enabled="false" 
+                                            change="onUpload"
+                                            buttonOnly="true"
+                                            sameFilenameAllowed="true"
+                                            />
+                                    </Toolbar>
+                                </table:extension>
+                                <table:columns>
+                                    <table:Column>
+                                        <Label text="Material"/>
+                                        <table:template>
+                                            <VBox>
+                                                <Text text="{mainData>material}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                                <Input value="{mainData>material}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column width="15rem">
+                                        <Label text="Description"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>Description}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>Description}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Req-Qty"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>ReqQty}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>ReqQty}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="ASN Qty"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>ASNQty}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>ASNQty}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Stock"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>Stock}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>Stock}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Per Case"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>perCase}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>perCase}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Box Qty"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>BoxQty}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>BoxQty}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Delivery Qty"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>DeliveryQty}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>DeliveryQty}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="GR Type"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>GRType}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>GRType}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Detail"/>
+                                        <table:template>
+                                            <Button icon="sap-icon://add-process" press="onDetail"/>
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+                        </VBox>
+                        <layoutData>
+                            <layout:GridData span="XL8 L8 M6 S12" />
+                        </layoutData>
+                    </HBox>
+                    <VBox visible="{= ${check>/check} === 'DS' ? true : false}" id="dsiTable">
+                        <HBox backgroundDesign="Translucent">
+                            <table:Table visibleRowCountMode="Auto" minAutoRowCount="2" selectionMode="Single" selectionBehavior="RowOnly" rows="{mainData>/detailDS}">
+                                <table:extension>
+                                    <Toolbar style="Clear">  
+                                        <Title text="Delivery Schedule Information"/>
+                                    </Toolbar>
+                                </table:extension>
+                                <table:columns>
+                                    <table:Column>
+                                        <Label text="Schedule Date"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>Date}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>Date}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Schedule Time"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>Time}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>Time}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                    <table:Column>
+                                        <Label text="Req. Qty"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>Req}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>Req}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+                            <layoutData>
+                                <layout:GridData span="XL8 L8 M6 S12" />
+                            </layoutData>
+                        </HBox>
+                        <HBox backgroundDesign="Translucent" visible="{= ${check>/check} === 'DS' ? true : false}" id="bliTable">
+                            <table:Table rows="{mainData>/detailBL}" selectionMode="Single" selectionBehavior="RowOnly">
+                                <table:extension>
+                                    <Toolbar style="Clear">  
+                                        <Title text="Box Label Information"/>
+                                    </Toolbar>
+                                </table:extension>
+                                <table:columns>
+                                    <table:Column>
+                                        <Label text="Box Label"/>
+                                        <table:template>
+                                            <VBox>
+                                            <Text text="{mainData>boxLabel}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{mainData>boxLabel}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                            </VBox>
+                                        </table:template>
+                                    </table:Column>
+                                </table:columns>
+                            </table:Table>
+                            <layoutData>
+                                <layout:GridData span="XL4 L4 M6 S12" />
+                            </layoutData>
+                        </HBox>
+                        <layoutData>
+                            <layout:GridData span="XL4 L4 M6 S12" />
+                        </layoutData>
+                    </VBox>
+                    <HBox visible="{= ${check>/check} === 'JIT' ? true : false}">
+                        <table:Table selectionMode="Single" rows="{subData>/}" id="JITTable">
+                            <table:extension>
+                                <Toolbar style="Clear">  
+                                    <Title text="Material Information"/>
+                                </Toolbar>
+                            </table:extension>
+                            <table:columns>
+                                <table:Column>
+                                    <Label text="JIT Call &#10; Order"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>JITCallOrder}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>JITCallOrder}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Material"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>Material}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>Material}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Description"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>Description}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>Description}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Delivery &#10; Date"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>DeliveryDate}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>DeliveryDate}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Delivery &#10; Time"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>DeliveryTime}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>DeliveryTime}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Request &#10; Qty"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>RequestQty}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>RequestQty}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Delivery &#10; Qty"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>DeliveryQty}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>DeliveryQty}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Box Label"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>BoxLabel}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>BoxLabel}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Box Qty"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>BoxQty}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>BoxQty}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Stock"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>Stock}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>Stock}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                                <table:Column>
+                                    <Label text="Safety &#10; Stock"/>
+                                    <table:template>
+                                        <VBox>
+                                            <Text text="{subData>SafetyStock}" visible="{= ${save>/save} === 'save' ? true : false}"/>
+                                            <Input value="{subData>SafetyStock}" visible="{= ${save>/save} === 'notSave' ? true : false}"/>
+                                        </VBox>
+                                    </table:template>
+                                </table:Column>
+                            </table:columns>
+                        </table:Table>
+                        <layoutData>
+                            <layout:GridData span="XL12 L12 M12 S12" />
+                        </layoutData>
+                    </HBox>
+                </form:content>
+            </form:SimpleForm>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

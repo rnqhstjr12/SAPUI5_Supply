@@ -1,0 +1,19 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <SelectDialog
+		id="GateValueHelp"
+		title="Gate"
+		items="{gateList>/}"
+		search=".onGateValueHelpSearch"
+		confirm=".onGateValueHelpClose"
+		cancel=".onGateValueHelpClose"
+	>
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{gateList>gateName}"
+		/>
+	</SelectDialog>
+</c:FragmentDefinition>

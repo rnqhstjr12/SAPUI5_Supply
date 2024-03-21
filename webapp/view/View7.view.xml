@@ -1,0 +1,198 @@
+<mvc:View 
+    controllerName="project1.controller.View7"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table">
+    <f:DynamicPage>
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Label text="Packing Spec > 등록 및 접수 : PM02ERP"/>
+                </f:heading>
+                <f:actions>
+                    <Button text="조회" icon="sap-icon://search" press="onSearch"/>
+                    <Button text="입력" icon="sap-icon://write-new-document"/>
+                    <Button text="수정" icon="sap-icon://edit"/>
+                    <Button text="삭제" icon="sap-icon://delete"/>
+                    <Button text="접수" icon="sap-icon://accounting-document-verification"/>
+                    <Button text="취소" icon="sap-icon://cancel"/>
+                    <Button text="엑셀" icon="sap-icon://excel-attachment"/>
+                    <Button icon="sap-icon://refresh" press=".onRefresh"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <form:SimpleForm editable="true">
+                        <form:content>
+                            <Label text="공장" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="fac">
+                                <core:Item key="HK11" text="HK11 울산 CKD 공장"/>
+                                <core:Item key="HK12" text="HK12 울산 CKD 공장"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Select>
+                            <Label text="자재번호" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Input id="num">
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Input>
+                            <Label text="국가/차종" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="car">
+                                <core:Item key="carAll" text="전체"/>
+                                <core:Item key="BMW" text="BMW"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Select>
+                            <Label text="포장사양" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="options">
+                                <core:Item key="optionAll" text="전체"/>
+                                <core:Item key="alll" text="저어언체"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Select>
+                            <Label text="등록업체" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Input id="vender">
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Input>
+                            <Label text="작성요청일" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <HBox>
+                                <DatePicker displayFormat="yyyy-MM-dd"/>
+                                <Label text="~"/>
+                                <DatePicker displayFormat="yyyy-MM-dd"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </HBox>
+                            <Label text="진행상태" wrapping="false">
+                                <layoutData>
+                                    <layout:GridData span="XL1 L1 M1 S1"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="progress">
+                                <core:Item key="progressC" text="C 업체접수"/>
+                                <core:Item key="progressA" text="A 업체접수"/>
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M2 S2"/>
+                                </layoutData>
+                            </Select>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <table:Table selectionMode="MultiToggle" rows="{facData>/}">
+                <table:columns>
+                    <table:Column hAlign="Center">
+                        <Label text="자재번호" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>number}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="자재명" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>name}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="국가차종" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>car}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="포장사양" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>option}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="제출구분" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>submitCheck}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="작성의뢰번호" textAlign="Center"/>
+                        <table:template>
+                            <Link text="{facData>requestNum}" press="onDetail"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="작성사유" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>comment}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="담당자" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>manager}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="진행상태" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>progress}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="취소사유" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>cancelComent}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="사양번호" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>optionNum}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <Label text="OK" textAlign="Center"/>
+                        <table:template>
+                            <Text text="{facData>ok}"/>
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

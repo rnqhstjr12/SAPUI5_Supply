@@ -1,0 +1,116 @@
+<mvc:View controllerName="project1.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    >
+    <f:DynamicPage>
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <HBox alignItems="Center">
+                        <Button icon="sap-icon://navigation-left-arrow" type="Transparent" press=".onBack"/>
+                        <Title text="사용자 상세 정보"/>
+                    </HBox>
+                </f:heading>
+                <f:actions>
+                    <Button text="수정" type="Emphasized"/>
+                    <Button text="삭제" type="Emphasized"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content>
+            <IconTabBar id="iconTabBar">
+                <items>
+                    <IconTabFilter text="기본 정보">
+                        <Panel headerText="계정 정보" expandable="true" expanded="true" stickyHeader="true">
+                            <form:SimpleForm
+								editable="false"
+								layout="ColumnLayout"
+                                labelCellsLarge="2"
+                            >
+								<form:content>
+									<Label text="사용자명"/>
+									<Text text="권 용현"/>
+									<Label text="사용자 분류"/>
+									<Text text="External"/>
+									<Label text="비밀번호"/>
+									<Text text="(Last Change Date : No Date Information)"/>
+                                    <core:Icon src="sap-icon://private" color="red" width="0%"/>
+                                    <Label text="시작일"/>
+									<Text text="1000-01-01"/>
+                                    <Label text="사용자 Id"/>
+									<Text text="sap02"/>
+									<Label text="사번"/>
+									<Text text="JE0012"/>
+									<Label text="사용자 활성화"/>
+									<Switch state="true" enabled="false">
+                                        <layoutData>
+                                            <FlexItemData growFactor="1" />
+                                        </layoutData>
+                                    </Switch>
+                                    <Label text="종료일"/>
+									<Text text="9999-12-31"/>
+								</form:content>
+							</form:SimpleForm>
+                        </Panel>
+                        <Panel headerText="연락처 정보" expandable="true" expanded="true" stickyHeader="true">
+                            <form:SimpleForm
+								editable="false"
+								layout="ColumnLayout"
+                            >
+                                <form:content>
+                                    <Label text="이메일"/>
+                                    <Text text="yong.hyun.kwon@sap.com"/>
+                                    <Label text="입사일"/>
+                                    <Text text="2023-07-23"/>
+                                    <Label text="성별"/>
+                                    <Text text="Woman"/>
+                                    <Label text="계좌 정보"/>
+                                    <Text text="신한 ()"/>
+                                    <Label text="주소"/>
+                                    <Text text="서울시 송파고 방이동"/>
+                                    <Label text="연락처"/>
+                                    <Text text="(Office)"/>
+                                    <Label text=""/>
+                                    <Text text="(HP) 010-4444-4444"/>
+                                    <Label text="생일"/>
+                                    <Text text="1991-01-01"/>
+                                    <Label text="결혼 여부"/>
+                                    <Text text="미혼"/>
+                                    <Label text=""/>
+                                    <Text text=""/>
+                                    <Label text=""/>
+                                    <Text text=""/>
+                                </form:content>
+                            </form:SimpleForm>
+                        </Panel>
+                        <Panel headerText="조직 정보" expandable="true" expanded="true" stickyHeader="true">
+                            <form:SimpleForm
+								editable="false"
+								layout="ColumnLayout"
+                                labelCellsLarge="2"
+                            >
+                                <form:content>
+                                    <Label text="회사"/>
+                                    <Text text="SAP KOREA"/>
+                                    <Label text="직급"/>
+                                    <Text text="ㅣ"/>
+                                    <Label text="직위"/>
+                                    <Text text="파트너"/>
+                                    <Label text="job code"/>
+                                    <Text text="-"/>
+                                </form:content>
+                            </form:SimpleForm>
+                        </Panel>
+                    </IconTabFilter>
+                    <IconTabFilter text="추가 정보">
+                        <Text text="추가 정보" />
+                    </IconTabFilter>
+					</items>
+            </IconTabBar>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

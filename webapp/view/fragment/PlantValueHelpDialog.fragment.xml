@@ -1,0 +1,19 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <SelectDialog
+		id="PlantValueHelp"
+		title="Plant"
+		items="{plantList>/}"
+		search=".onPlantValueHelpSearch"
+		confirm=".onPlantValueHelpClose"
+		cancel=".onPlantValueHelpClose"
+	>
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{plantList>plantName}"
+		/>
+	</SelectDialog>
+</c:FragmentDefinition>

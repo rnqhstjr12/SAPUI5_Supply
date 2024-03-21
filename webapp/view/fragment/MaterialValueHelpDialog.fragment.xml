@@ -1,0 +1,19 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+    <SelectDialog
+		id="MaterialValueHelp"
+		title="Material"
+		items="{materialList>/}"
+		search=".onMaterialValueHelpSearch"
+		confirm=".onMaterialValueHelpClose"
+		cancel=".onMaterialValueHelpClose"
+	>
+		<StandardListItem
+			iconDensityAware="false"
+			iconInset="false"
+			title="{materialList>materialName}"
+		/>
+	</SelectDialog>
+</c:FragmentDefinition>

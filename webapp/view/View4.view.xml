@@ -1,0 +1,61 @@
+<mvc:View controllerName="project1.controller.View4"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+	xmlns:card="sap.f.cards"
+	xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:tnt="sap.tnt"
+    >
+    <Page showHeader="false" class="sapUiContentMargin">
+        <Panel>
+            <content>
+                <VBox class="sapUiSmallMarginBottom sapUiSmallMarginTop" height="auto">
+                    <Toolbar class="sapUiSmallMarginTop">
+                        <Title text="TO-DO 목록" class="sapUiSmallMarginBottom"/>
+                        <ToolbarSpacer/>
+                        <Button text="설정" type="Emphasized" class="sapUiSmallMarginBottom" height="100%"/>
+                    </Toolbar>
+                </VBox>
+                <GenericTile header="처리할 업무" subheader="(TO-DO)" class="sapUiSmallMarginBegin">
+                    <TileContent>
+                        <Text text="Tile1"/>
+                    </TileContent>
+                </GenericTile>
+                <GenericTile header="수신 그룹 업무 처리 내역" frameType="TwoByOne" subheader="(수신 그룹 업무 처리 내역)" class="sapUiSmallMarginBegin">
+                    <TileContent>
+                        <Text text="Tile2"/>
+                    </TileContent>
+                </GenericTile>
+                <GenericTile header="업무 처리 현황" class="sapUiSmallMarginBegin">
+                    <TileContent>
+                        <Text text="Tile3"/>
+                    </TileContent>
+                </GenericTile>
+                <GenericTile header="업무 처리 예상 시간" subheader="(TIME SHEET)" class="sapUiSmallMarginBegin">
+                    <TileContent>
+                        <Text text="Tile4"/>
+                    </TileContent>
+                </GenericTile>
+                <GenericTile header="처리 예정 업무" class="sapUiSmallMarginBegin">
+                    <TileContent>
+                        <Text text="Tile5"/>
+                    </TileContent>
+                </GenericTile>
+                <VBox class="sapUiSmallMarginBottom sapUiSmallMarginTop">
+                    <Toolbar>
+                        <Title text="확인용" class="sapUiSmallMarginBottom sapUiSmallMarginTop"/>
+                    </Toolbar>
+                </VBox>
+                <GenericTile header="처리할 업무" subheader="(TO-DO)" class="sapUiSmallMarginBegin">
+                    <TileContent>
+                        <Text text="카트 + 차트 들어갈곳"/>
+                    </TileContent>
+                </GenericTile>
+            </content>
+        </Panel>
+    </Page>
+</mvc:View>

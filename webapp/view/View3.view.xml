@@ -1,0 +1,189 @@
+<mvc:View controllerName="project1.controller.View3"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+	xmlns:card="sap.f.cards"
+	xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:tnt="sap.tnt"
+    >
+    <Page class="sapUiLargePadding" showHeader="false">
+        <f:GridContainer
+            class="sapUiTinyMargin"
+            width="100%"
+            snapToRow="true"
+        >
+            <f:layout>
+                <f:GridContainerSettings rowSize="145px" columnSize="148px" gap="10px" />
+            </f:layout>
+            <f:layoutXS>
+                <f:GridContainerSettings rowSize="145px" columnSize="148px" gap="10px" />
+            </f:layoutXS>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="4" columns="6" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="SAP UI5 실무 적용 교육(전사 집체 교육)" iconSrc="sap-icon://laptop"/>
+                </f:header>
+                <f:content>
+                    <List>
+                        <CustomListItem>
+                            <l:Grid 
+                                defaultSpan="XL12 L12 M12 S12"
+                            >
+                                <VBox class="imageMargin">
+                                    <Image src="image/img_1.jpg" width="100%" height="430px"/>
+                                </VBox>
+                                <HBox alignItems="Cennter" justifyContent="Center" class="sapUiSmallMarginTop">
+                                    <core:Icon src="sap-icon://circle-task-2" color="blue" size="0.8em"/>
+                                    <core:Icon src="sap-icon://circle-task-2" color="gray" size="0.5em" class="sapUiTinyMarginBegin"/>
+                                </HBox>
+                            </l:Grid>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="2" columns="3" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="사내 전문가 검색" iconSrc="sap-icon://laptop"/>
+                </f:header>
+                <f:content>
+                    <List>
+                        <CustomListItem>
+                            <l:Grid 
+                                defaultSpan="XL12 L12 M12 S12"
+                            >
+                                <VBox class="imageMargin">
+                                    <Image src="image/img_1.jpg" width="100%" height="150px"/>
+                                </VBox>
+                            </l:Grid>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="2" columns="3" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="GILRO 개발 메뉴얼" iconSrc="sap-icon://laptop"/>
+                </f:header>
+                <f:content>
+                    <List>
+                        <CustomListItem>
+                            <l:Grid 
+                                defaultSpan="XL12 L12 M12 S12"
+                            >
+                                <VBox class="imageMargin">
+                                    <Image src="image/img_1.jpg" width="100%" height="150px"/>
+                                </VBox>
+                            </l:Grid>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="2" columns="3" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="나의 교육 과정" iconSrc="sap-icon://laptop"/>
+                </f:header>
+                <f:content>
+                    <List>
+                        <CustomListItem>
+                            <Table items="{card4>/items}">
+                                <columns>
+                                    <Column>
+                                        <Text text="과정"/>
+                                    </Column>
+                                    <Column>
+                                        <Text text="상태"/>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem>
+                                        <Text text="{card4>first}" class="sapUiTinyMargin"/>
+                                        <tnt:InfoLabel 
+                                            text="{card4>sec}" 
+                                            class="sapUiTinyMargin" 
+                                            renderMode="Loose"
+                                            colorScheme="{= ${card4>state} === 'Warning' ? 1 : ${card4>state} === 'Error' ? 2 : 6 }"
+                                        />
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="2" columns="3" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="전사 인성 교육" iconSrc="sap-icon://laptop"/>
+                </f:header>
+                <f:content>
+                    <List items="{card5>/items}" showSeparators="None">
+                        <CustomListItem highlight="{card5>state}">
+                            <Text text="{card5>first}" class="sapUiTinyMargin"/>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="2" columns="4" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="사원 별 업무 교육" iconSrc="sap-icon://legend" class="boxColorBlack"/>
+                </f:header>
+                <f:content>
+                    <List items="{card6>/items}" showSeparators="None">
+                        <CustomListItem>
+                            <Text text="{card6>first}" class="sapUiTinyMargin"/>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="2" columns="4" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="프로세스 메뉴얼" iconSrc="sap-icon://legend" class="boxColorBlack"/>
+                </f:header>
+                <f:content>
+                    <List items="{card7>/items}" showSeparators="None">
+                        <CustomListItem>
+                            <Text text="{card7>first}" class="sapUiTinyMargin"/>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+            <f:Card>
+                <f:layoutData>
+                    <f:GridContainerItemLayoutData minRows="2" columns="4" />
+                </f:layoutData>
+                <f:header>
+                    <card:Header title="전문 지식 교육" iconSrc="sap-icon://legend" class="boxColorBlack"/>
+                </f:header>
+                <f:content>
+                    <List items="{card8>/items}" showSeparators="None">
+                        <CustomListItem>
+                            <Text text="{card8>first}" class="sapUiTinyMargin"/>
+                        </CustomListItem>
+                    </List>
+                </f:content>
+            </f:Card>
+        </f:GridContainer>
+    </Page>
+</mvc:View>
