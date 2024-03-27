@@ -1,0 +1,155 @@
+<mvc:View 
+    controllerName="project1.controller.DisplayDealerOrder"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+>
+    <f:DynamicPage toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Display Dealer Order"/>
+                </f:heading>
+                    <f:actions>
+                        <Button text="Inquiry" icon="sap-icon://search" press="onInquiry"/>
+                    </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <form:SimpleForm editable="true">
+                        <form:content>
+                            <form:SimpleForm>
+                                <form:content>
+                                    <Label text="Production Month" wrapping="false">
+                                    <layoutData>
+                                        <layout:GridData span="XL4 L4 M4 S4"/>
+                                    </layoutData>
+                                    </Label>
+                                    <DatePicker displayFormat="yyyy" id="productMonth">
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </DatePicker>
+                                    <Label text="Model Year" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL4 L4 M4 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Select id="SelectMYId">
+                                        <core:Item key="all" text="--All--"/>
+                                        <core:Item key="2021" text="2021"/>
+                                        <core:Item key="2022" text="2022"/>
+                                        <core:Item key="2023" text="2023"/>
+                                        <core:Item key="2024" text="2024"/>
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </Select>
+                                    <Label text="Car Line" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL4 L4 M4 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Select id="SelectCLId">
+                                        <core:Item key="all" text="--All--"/>
+                                        <core:Item key="Elantra" text="Elantra"/>
+                                        <core:Item key="Kona" text="Kona"/>
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </Select>
+                                    <Label text="Order Status" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL4 L4 M4 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Text text="Confirmed" >
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </Text>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL6 L6 M6 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                            <form:SimpleForm>
+                                <form:content>
+                                    <Label text="Submitted Dealer Order" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL4 L4 M4 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Text text="{CarModel>/SubDealerOrder}" >
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </Text>
+                                    
+                                    <Label text="Confirmed Dealer Order" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL4 L4 M4 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Text text="{CarModel>/ConDealerOrder}" >
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </Text>
+                                    
+                                    <Label text="Submitted Supplenmental Order" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL4 L4 M4 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Text text="{CarModel>/SubSupOrder}" >
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </Text>
+                                    
+                                    <Label text="Confirmed Supplenmental Order" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL4 L4 M4 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Text text="{CarModel>/ConSupOrder}" >
+                                        <layoutData>
+                                            <layout:GridData span="XL8 L8 M8 S8"/>
+                                        </layoutData>
+                                    </Text>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL6 L6 M6 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <Toolbar>
+                    <IconTabHeader select=".onSelectTab" id="tabHeader">
+                        <items>
+                            <IconTabFilter text="By Car Line" key="car" id="carTabBar"/>
+                            <IconTabFilter text="By Trim" key="trim" id="trimTabBar"/>
+                            <IconTabFilter text="By Trim + Colour" key="tc" id="tcTabBar"/>
+                        </items>
+                    </IconTabHeader>
+                    <ToolbarSpacer/>
+                    <Button text="Back" icon="sap-icon://nav-back" press=".onBack" />
+                </Toolbar>
+                <Panel id="tablePanel"/>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

@@ -1,0 +1,245 @@
+<mvc:View 
+    controllerName="project1.controller.OrderInquiry"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+>
+    <f:DynamicPage toggleHeaderOnTitleClick="true">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Order Inquiry"/>
+                </f:heading>
+                    <f:actions>
+                        <Button text="Inquiry" icon="sap-icon://search" press="inquiry"/>
+                    </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <form:SimpleForm editable="true">
+                        <form:content>
+                            <VBox>
+                                <Label text="Car Line" wrapping="false"/>
+                                <Select width="auto">
+                                    <core:Item key="all" text="--All--"/>
+                                    <core:Item key="key1" text="1"/>
+                                    <core:Item key="key2" text="2"/>
+                                </Select>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S12"/>
+                                </layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="Order Date" wrapping="false"/>
+                                <HBox alignItems="Center">
+                                <DatePicker displayFormat="yyyy-MM"/>
+                                <Label text="~" wrapping="false" textAlign="Center"/>
+                                <DatePicker displayFormat="yyyy-MM"/>
+                                </HBox>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S12"/>
+                                </layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="Model Year" wrapping="false"/>
+                                <Select width="auto">
+                                    <core:Item key="all" text="--Select ModelYear--"/>
+                                    <core:Item key="key1" text="1"/>
+                                    <core:Item key="key2" text="2"/>
+                                </Select>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S12"/>
+                                </layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="Order Type" wrapping="false"/>
+                                <Select width="auto">
+                                    <core:Item key="all" text="--All--"/>
+                                    <core:Item key="key1" text="1"/>
+                                    <core:Item key="key2" text="2"/>
+                                </Select>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S12"/>
+                                </layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="Trim" wrapping="false"/>
+                                <Select width="auto">
+                                    <core:Item key="all" text="--All--"/>
+                                    <core:Item key="key1" text="1"/>
+                                    <core:Item key="key2" text="2"/>
+                                </Select>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S12"/>
+                                </layoutData>
+                            </VBox>
+                            <VBox>
+                                <Label text="Location" wrapping="false"/>
+                                <Select width="auto">
+                                    <core:Item key="all" text="--All--"/>
+                                    <core:Item key="key1" text="1"/>
+                                    <core:Item key="key2" text="2"/>
+                                </Select>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S12"/>
+                                </layoutData>
+                            </VBox>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <Button text="Change" icon="sap-icon://synchronize" press=".onChange" enabled="false"/>
+                    <Button text="Excel" icon="sap-icon://excel-attachment" press=".onExcel" />
+                </Toolbar>
+            <table:Table
+                selectionMode="None"
+                filter="{mainModel>/}"
+                sort="{mainModel>/}"
+                rows="{mainModel>/}"
+            >
+                <table:columns>
+                    <table:Column hAlign="Center" width="60px">
+                        <Label text=""/>
+                        <table:template>
+                            <VBox>
+                                <Text text="-" visible="{= ${mainModel>data2} === 'Total' ? true : false }" />
+                                <RadioButton visible="{= ${mainModel>data2} === 'Total' ? false : true }"/>
+                            </VBox>
+                        </table:template>
+                    </table:Column>
+                    <table:Column headerSpan="2" hAlign="Center" >
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="HSC &#10; VIN"/>
+                        </table:multiLabels>
+                        <table:template>
+                                <Link text="{mainModel>HSC VIN}" click="handleClick" visible="{= ${mainModel>data2} === 'Total' ? false : true }"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Status"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Status}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column headerSpan="2" hAlign="Center" sortProperty="data1" filterProperty="data1">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Model &#10; Year"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Model Year}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Description"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Description}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column headerSpan="2" hAlign="Center">
+                        <table:multiLabels>
+                            <Label text="Colour"/>
+                            <Label text="Ext."/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Ext.}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text="Colour"/>
+                            <Label text="Int."/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Int.}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column headerSpan="2" hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Trim"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Trim}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Order Type"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Order Type}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column headerSpan="2" hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Order No"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Link text="{mainModel>Order No}" click="handleClick"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="AlloCation Type"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>AlloCation Type}" />
+                        </table:template>
+                    </table:Column>
+
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Order Date"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Order Date}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Location"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Location}" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column hAlign="Center">
+                        <table:multiLabels>
+                            <Label text=""/>
+                            <Label text="Dealership &#10; ETA"/>
+                        </table:multiLabels>
+                        <table:template>
+                            <Text text="{mainModel>Dealership ETA}" />
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

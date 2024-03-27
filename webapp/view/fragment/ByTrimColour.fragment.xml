@@ -1,0 +1,149 @@
+<table:Table
+    xmlns:table="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns="sap.m"
+    id="ByTCTable"
+    selectionMode="None"
+    visible="{= ${state>/tcState} === 'true' ? true : false}"
+    filter="onFilter"
+    sort="onSort"
+    rows="{TrimColourModel>/}"
+>
+    <table:rowMode>
+        <rowmodes:Fixed fixedBottomRowCount="1"/>
+    </table:rowMode>
+    <table:columns>
+        <table:Column hAlign="Center" sortProperty="Model Year" filterProperty="Model Year">
+            <Label text="Model &#10; Year" textAlign="Center" wrapping="true"/>
+            <table:template>
+                <Text text="{TrimColourModel>Model Year}"/>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="HSC" filterProperty="HSC">
+            <Label text="HSC" textAlign="Center" wrapping="true"/>
+            <table:template>
+                <Text text="{TrimColourModel>HSC}"/>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Description" filterProperty="Description">
+            <Label text="Description" textAlign="Center" wrapping="true"/>
+            <table:template>
+                <Text text="{TrimColourModel>Description}"/>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Exterior Colour" filterProperty="Exterior Colour">
+            <Label text="Exterior Colour" textAlign="Center" wrapping="true"/>
+            <table:template>
+                <Text text="{TrimColourModel>Exterior Colour}"/>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Interior Colour" filterProperty="Interior Colour">
+            <Label text="Interior &#10; Colour" textAlign="Center" wrapping="true"/>
+            <table:template>
+                <Text text="{TrimColourModel>Interior Colour}"/>
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Submitted/Dealer Order" filterProperty="Submitted/Dealer Order">
+            <table:multiLabels>
+                <Label text="Submitted"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{TrimColourModel>Submitted/Dealer Order}" />
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Submitted/Supplemental" filterProperty="Submitted/Supplemental">
+            <table:multiLabels>
+                <Label text="Submitted"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{TrimColourModel>Submitted/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Confirmed/Dealer Order" filterProperty="Confirmed/Dealer Order">
+            <table:multiLabels>
+                <Label text="Confirmed"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{TrimColourModel>Confirmed/Dealer Order}" visible="{= ${TrimColourModel>Confirmed/Dealer Order} === 0 ? true : false}" />
+                    <Link text="{TrimColourModel>Confirmed/Dealer Order}" press="" visible="{= ${TrimColourModel>Confirmed/Dealer Order} === 0 ? false : true}"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Confirmed/Supplemental" filterProperty="Confirmed/Supplemental">
+            <table:multiLabels>
+                <Label text="Confirmed"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{TrimColourModel>Confirmed/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Cancelled/Dealer Order" filterProperty="Cancelled/Dealer Order">
+            <table:multiLabels>
+                <Label text="Cancelled"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{TrimColourModel>Cancelled/Dealer Order}" visible="{= ${TrimColourModel>Cancelled/Dealer Order} === 0 ? true : false}"/>
+                    <Link text="{TrimColourModel>Cancelled/Dealer Order}" press="" visible="{= ${TrimColourModel>Cancelled/Dealer Order} === 0 ? false : true}"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Cancelled/Supplemental" filterProperty="Cancelled/Supplemental">
+            <table:multiLabels>
+                <Label text="Cancelled"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{TrimColourModel>Cancelled/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Allocated/Dealer Order" filterProperty="Allocated/Dealer Order">
+            <table:multiLabels>
+                <Label text="Allocated"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{TrimColourModel>Allocated/Dealer Order}" visible="{= ${TrimColourModel>Allocated/Dealer Order} === 0 ? true : false}"/>
+                    <Link text="{TrimColourModel>Allocated/Dealer Order}" press="" visible="{= ${TrimColourModel>Allocated/Dealer Order} === 0 ? false : true}"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Allocated/Supplemental" filterProperty="Allocated/Supplemental">
+            <table:multiLabels>
+                <Label text="Allocated"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{TrimColourModel>Allocated/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Delivered/Dealer Order" filterProperty="Delivered/Dealer Order">
+            <table:multiLabels>
+                <Label text="Delivered"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{TrimColourModel>Delivered/Dealer Order}" visible="{= ${TrimColourModel>Delivered/Dealer Order} === 0 ? true : false}"/>
+                    <Link text="{TrimColourModel>Delivered/Dealer Order}" press="" visible="{= ${TrimColourModel>Delivered/Dealer Order} === 0 ? false : true}"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Delivered/Supplemental" filterProperty="Delivered/Supplemental">
+            <table:multiLabels>
+                <Label text="Delivered"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{TrimColourModel>Delivered/Supplemental}" />
+            </table:template>
+        </table:Column>
+    </table:columns>
+</table:Table>

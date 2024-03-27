@@ -120,10 +120,17 @@
           ]
         },
         {
-          "name": "Study1",
-          "pattern": "Study1",
+          "name": "DisplayDealerOrder",
+          "pattern": "DisplayDealerOrder",
           "target": [
-            "Study1"
+            "DisplayDealerOrder"
+          ]
+        },
+        {
+          "name": "OrderInquiry",
+          "pattern": "OrderInquiry",
+          "target": [
+            "OrderInquiry"
           ]
         },
         {
@@ -184,12 +191,19 @@
           "viewId": "View6",
           "viewName": "View6"
         },
-        "Study1": {
+        "DisplayDealerOrder": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "Study1",
-          "viewName": "Study1"
+          "viewId": "DisplayDealerOrder",
+          "viewName": "DisplayDealerOrder"
+        },
+        "OrderInquiry": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "OrderInquiry",
+          "viewName": "OrderInquiry"
         },
         "View7": {
           "viewType": "XML",

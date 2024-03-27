@@ -1,0 +1,128 @@
+<table:Table
+    xmlns:table="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+    xmlns="sap.m"
+    id="ByCarTable"
+    selectionMode="None"
+    visible="{= ${state>/carState} === 'true' ? true : false}"
+    filter="onFilter"
+    sort="onSort"
+    rows="{CarModel>/}"
+>
+    <table:rowMode>
+        <rowmodes:Fixed fixedBottomRowCount="1"/>
+    </table:rowMode>
+    <table:columns>
+        <table:Column hAlign="Center" sortProperty="Car Line" filterProperty="Car Line">
+            <Label text="Car Line" textAlign="Center" wrapping="true"/>
+            <table:template>
+                <VBox>
+                    <Text text="{CarModel>Car Line}" visible="{= ${CarModel>Car Line} === 'Total' ? true : false }"/>
+                    <Link text="{CarModel>Car Line}" visible="{= ${CarModel>Car Line} === 'Total' ? false : true }" press=".onTrim"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Submitted/Dealer Order" filterProperty="Submitted/Dealer Order">
+            <table:multiLabels>
+                <Label text="Submitted"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{CarModel>Submitted/Dealer Order}" />
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Submitted/Dealer Order" filterProperty="Submitted/Dealer Order">
+            <table:multiLabels>
+                <Label text="Submitted"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{CarModel>Submitted/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Confirmed/Dealer Order" filterProperty="Confirmed/Dealer Order">
+            <table:multiLabels>
+                <Label text="Confirmed"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{CarModel>Confirmed/Dealer Order}" visible="{= ${CarModel>Confirmed/Dealer Order} === 0 ? true : false }"/>
+                    <Link text="{CarModel>Confirmed/Dealer Order}" visible="{= ${CarModel>Confirmed/Dealer Order} === 0 ? false : true }" press=".onDealerOrderDetail"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Confirmed/Supplemental" filterProperty="Confirmed/Supplemental">
+            <table:multiLabels>
+                <Label text="Confirmed"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{CarModel>Confirmed/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Cancelled/Dealer Order" filterProperty="Cancelled/Dealer Order">
+            <table:multiLabels>
+                <Label text="Cancelled"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{CarModel>Cancelled/Dealer Order}" visible="{= ${CarModel>Cancelled/Dealer Order} === 0 ? true : false }"/>
+                    <Link text="{CarModel>Cancelled/Dealer Order}" visible="{= ${CarModel>Cancelled/Dealer Order} === 0 ? false : true }" press=".onDealerOrderDetail"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Cancelled/Supplemental" filterProperty="Cancelled/Supplemental">
+            <table:multiLabels>
+                <Label text="Cancelled"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{CarModel>Cancelled/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Allocated/Dealer Order" filterProperty="Allocated/Dealer Order">
+            <table:multiLabels>
+                <Label text="Allocated"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{CarModel>Allocated/Dealer Order}" visible="{= ${CarModel>Allocated/Dealer Order} === 0 ? true : false }"/>
+                    <Link text="{CarModel>Allocated/Dealer Order}" visible="{= ${CarModel>Allocated/Dealer Order} === 0 ? false : true }" press=".onDealerOrderDetail"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Allocated/Supplemental" filterProperty="Allocated/Supplemental">
+            <table:multiLabels>
+                <Label text="Allocated"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{CarModel>Allocated/Supplemental}" />
+            </table:template>
+        </table:Column>
+        <table:Column headerSpan="2" hAlign="Center" sortProperty="Delivered/Dealer Order" filterProperty="Delivered/Dealer Order">
+            <table:multiLabels>
+                <Label text="Delivered"/>
+                <Label text="Dealer Order"/>
+            </table:multiLabels>
+            <table:template>
+                <VBox>
+                    <Text text="{CarModel>Delivered/Dealer Order}" visible="{= ${CarModel>Delivered/Dealer Order} === 0 ? true : false }"/>
+                    <Link text="{CarModel>Delivered/Dealer Order}" visible="{= ${CarModel>Delivered/Dealer Order} === 0 ? false : true }" press=".onDealerOrderDetail"/>
+                </VBox>
+            </table:template>
+        </table:Column>
+        <table:Column hAlign="Center" sortProperty="Delivered/Supplemental" filterProperty="Delivered/Supplemental">
+            <table:multiLabels>
+                <Label text="Delivered"/>
+                <Label text="Supplemental"/>
+            </table:multiLabels>
+            <table:template>
+                <Text text="{CarModel>Delivered/Supplemental}" />
+            </table:template>
+        </table:Column>
+    </table:columns>
+</table:Table>
