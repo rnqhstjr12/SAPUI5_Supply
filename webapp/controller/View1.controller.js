@@ -22,14 +22,17 @@ sap.ui.define([
             onView6: function () {
                 this.getView().getController().getOwnerComponent().getRouter().navTo("View6");
             },
+            onView7: function () {
+                this.getView().getController().getOwnerComponent().getRouter().navTo("View7");
+            },
             onOrderInquiry: function () {
                 this.getView().getController().getOwnerComponent().getRouter().navTo("OrderInquiry");
             },
             onDisplayDealerOrder: function () {
                 this.getView().getController().getOwnerComponent().getRouter().navTo("DisplayDealerOrder");
             },
-            onView7: function () {
-                this.getView().getController().getOwnerComponent().getRouter().navTo("View7");
+            onProgramProtectionList: function () {
+                this.getView().getController().getOwnerComponent().getRouter().navTo("ProgramProtectionList");
             },
         });
     });

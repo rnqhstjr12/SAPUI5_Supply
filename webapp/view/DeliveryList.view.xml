@@ -1,0 +1,136 @@
+<mvc:View 
+    controllerName="project1.controller.DeliveryList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+>
+    <f:DynamicPage toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle >
+                <f:heading>
+                    <Title text="Delivery List"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <form:SimpleForm editable="true">
+                        <form:content>
+                            <form:SimpleForm>
+                                <form:content>
+                                    <HBox alignItems="Center">
+                                        <core:Icon src="sap-icon://bo-strategy-management"/>
+                                        <Text text="VIN"/>
+                                        <Button text="ADD VIN" icon="sap-icon://add-folder" type="Transparent" press=".onCreate"/>
+                                        <core:Icon src="sap-icon://arrow-right" class="sapUiMediumMarginBegin"/>
+                                    </HBox>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL2 L2 M6 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                            <form:SimpleForm>
+                                <form:content>
+                                    <VBox id="DeleteVBox">
+                                        <HBox>
+                                            <Input fieldGroupIds="Required,Input" liveChange="onLiveChange"/>
+                                            <Button text="Delete" icon="sap-icon://sys-minus" type="Transparent" press=".onDelete"/>
+                                        </HBox>
+                                    </VBox>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL10 L10 M6 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <Toolbar>
+                    <ToolbarSpacer />
+                    <Button text="Inquiry" icon="sap-icon://zoom-in" press=".onInquiry"/>
+                    <Button text="Confirm" icon="sap-icon://approvals" press=".onConfirm"/>
+                </Toolbar>
+                <table:Table selectionMode="None">
+                    <table:columns>
+                        <table:Column hAlign="Center">
+                            <Label text="Sel." textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Status" textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="VIN &#10; HSC" textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Description" textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Model Year" textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" headerSpan="2">
+                            <table:multiLabels>
+                                <Label text="Colour" textAlign="Center" wrapping="true"/>
+                                <Label text="Ext" textAlign="Center" wrapping="true"/>
+                            </table:multiLabels>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <table:multiLabels>
+                                <Label text="Colour" textAlign="Center" wrapping="true"/>
+                                <Label text="Int" textAlign="Center" wrapping="true"/>
+                            </table:multiLabels>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="PIO" textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Order" textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Message" textAlign="Center" wrapping="true"/>
+                            <table:template>
+                                <Text text="" />
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

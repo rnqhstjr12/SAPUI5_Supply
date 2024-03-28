@@ -120,6 +120,27 @@
           ]
         },
         {
+          "name": "View7",
+          "pattern": "View7",
+          "target": [
+            "View7"
+          ]
+        },
+        {
+          "name": "View8",
+          "pattern": "View8",
+          "target": [
+            "View8"
+          ]
+        },
+        {
+          "name": "DeliveryList",
+          "pattern": "DeliveryList",
+          "target": [
+            "DeliveryList"
+          ]
+        },
+        {
           "name": "DisplayDealerOrder",
           "pattern": "DisplayDealerOrder",
           "target": [
@@ -134,17 +155,10 @@
           ]
         },
         {
-          "name": "View7",
-          "pattern": "View7",
+          "name": "ProgramProtectionList",
+          "pattern": "ProgramProtectionList",
           "target": [
-            "View7"
-          ]
-        },
-        {
-          "name": "View8",
-          "pattern": "View8",
-          "target": [
-            "View8"
+            "ProgramProtectionList"
           ]
         }
       ],
@@ -191,6 +205,27 @@
           "viewId": "View6",
           "viewName": "View6"
         },
+        "View7": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "View7",
+          "viewName": "View7"
+        },
+        "View8": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "View8",
+          "viewName": "View8"
+        },
+        "DeliveryList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "DeliveryList",
+          "viewName": "DeliveryList"
+        },
         "DisplayDealerOrder": {
           "viewType": "XML",
           "transition": "slide",
@@ -205,19 +240,12 @@
           "viewId": "OrderInquiry",
           "viewName": "OrderInquiry"
         },
-        "View7": {
+        "ProgramProtectionList": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "View7",
-          "viewName": "View7"
-        },
-        "View8": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "View8",
-          "viewName": "View8"
+          "viewId": "ProgramProtectionList",
+          "viewName": "ProgramProtectionList"
         }
       }
     },

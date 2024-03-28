@@ -1011,7 +1011,7 @@ sap.ui.define([
             reader.readAsBinaryString(files[0]);
 
         },
-         // fieldGroupId를 기반으로 유효성 검사 ---------------------------------------------------
+        // fieldGroupId를 기반으로 유효성 검사 ---------------------------------------------------
         globalCheck: function (fieldGroupId, _this) {
             let that = this;
             let checkList = [];

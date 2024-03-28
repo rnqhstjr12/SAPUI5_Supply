@@ -57,6 +57,7 @@
                             <Button text="Supply" press=".onView6" type="Emphasized"/>
                             <Button text="OrderInquiry" press=".onOrderInquiry" type="Emphasized"/>
                             <Button text="DisplayDealerOrder" press=".onDisplayDealerOrder" type="Emphasized"/>
+                            <Button text="ProgramProtectionList" press=".onProgramProtectionList" type="Emphasized"/>
                             <ToolbarSpacer/>
                             <SearchField width="13%" class="sapUiSmallMargin" placeholder="작성자 또는 제목"/>
                             <Button icon="sap-icon://write-new"/>

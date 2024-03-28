@@ -19,11 +19,11 @@ sap.ui.define([
                 { 
                     'Car Line' : 'Elantra', 
                     'Submitted' : {
-                        'Dealer Order': 1,
+                        'Dealer Order': 2,
                         'Supplemental': 0,
                     },
                     'Confirmed' : {
-                        'Dealer Order': 1,
+                        'Dealer Order': 2,
                         'Supplemental': 0,
                     },
                     'Cancelled' : {
@@ -31,7 +31,7 @@ sap.ui.define([
                         'Supplemental': 0,
                     },
                     'Allocated' : {
-                        'Dealer Order': 1,
+                        'Dealer Order': 2,
                         'Supplemental': 0,
                     },
                     'Delivered' : {
@@ -144,7 +144,6 @@ sap.ui.define([
                 totalDel_Sup += parseInt(data.Delivered.Supplemental);
                 for (let j = 0; j < data.Detail.length; j++) {
                     totalDetail.push(data.Detail[j]);
-                    console.log(data.Detail[j]);
                 }
             }
             console.log(totalDetail);
@@ -343,7 +342,9 @@ sap.ui.define([
                 totalAll_Sup += parseInt(data.Allocated.Supplemental);
                 totalDel_DO += parseInt(data.Delivered['Dealer Order']);
                 totalDel_Sup += parseInt(data.Delivered.Supplemental);
-                totalDetail.push(data.Detail);
+                for (let j = 0; j < data.Detail.length; j++) {
+                    totalDetail.push(data.Detail[j]);
+                }
             }
 
             oTotal.Submitted['Dealer Order'] = totalSub_DO;
@@ -453,7 +454,9 @@ sap.ui.define([
                 totalAll_Sup += parseInt(data.Allocated.Supplemental);
                 totalDel_DO += parseInt(data.Delivered['Dealer Order']);
                 totalDel_Sup += parseInt(data.Delivered.Supplemental);
-                totalDetail.push(data.Detail);
+                for (let j = 0; j < data.Detail.length; j++) {
+                    totalDetail.push(data.Detail[j]);
+                }
             }
 
             oTotal.Submitted['Dealer Order'] = totalSub_DO;
@@ -482,7 +485,14 @@ sap.ui.define([
         },
         onDealerOrderDetail: function (oEvent) {
             let buttonRow = oEvent.getSource().getBindingContext("CarModel").getProperty();
-            this.getView().getModel("CarModel").setProperty("/Detail", buttonRow.Detail);
+            let modelYear = this.byId("SelectMYId").getSelectedKey();
+
+            let filterDetail = modelYear === 'all' ? buttonRow.Detail : buttonRow.Detail.filter(function (detailItem) {
+                return detailItem['Model Year'] === modelYear;
+            });
+
+            this.getView().getModel("CarModel").setProperty("/Detail", filterDetail);
+
             let oView = this.getView();
             if (!this.nameDialog) {
                 this.nameDialog = Fragment.load({
@@ -566,7 +576,7 @@ sap.ui.define([
                         'Supplemental': 0,
                     },
                     'Detail' : {
-                        'HSC' : aData.Detail[0].HSC,
+                        'HSC' : aData.Detail[0]['HSC'],
                         'Description' : aData.Detail[0].Description,
                         'Exterior Colour' : aData.Detail[0]['Exterior Colour'],
                         'Interior Colour' : aData.Detail[0]['Interior Colour']
@@ -596,7 +606,7 @@ sap.ui.define([
                         'Supplemental': 0,
                     },
                     'Detail' : {
-                        'HSC' : aData.Detail[1].HSC,
+                        'HSC' : aData.Detail[1]['HSC'],
                         'Description' : aData.Detail[1].Description,
                         'Exterior Colour' : aData.Detail[1]['Exterior Colour'],
                         'Interior Colour' : aData.Detail[1]['Interior Colour']
@@ -880,5 +890,8 @@ sap.ui.define([
                 oSheet.destroy();
             });
         },
+        onDeliveryList: function () {
+            this.getView().getController().getOwnerComponent().getRouter().navTo("DeliveryList");
+        }
     });
 });

@@ -1,0 +1,229 @@
+<mvc:View 
+    controllerName="project1.controller.ProgramProtectionList"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+>
+    <f:DynamicPage toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Program Protection List" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <form:SimpleForm editable="true">
+                        <form:content>
+                            <form:SimpleForm editable="true">
+                                <form:content>
+                                    <Label text="VIN" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Input value="">
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </Input>
+                                    <Label text="Car Line" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Select>
+                                        <core:Item text="-- All --" />
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </Select>
+                                    <Label text="Body Type" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Select>
+                                        <core:Item text="-- All --" />
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </Select>
+                                    <Label text="Order Date" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                    </Label>
+                                    <HBox justifyContent="SpaceBetween">
+                                        <Text text="From" wrapping="false"/>
+                                        <DatePicker />
+                                        <Text text="To" wrapping="false"/>
+                                        <DatePicker />
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </HBox>
+                                    <Label text="Expiring in 10 days" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                    </Label>
+                                    <CheckBox >
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </CheckBox>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL6 L6 M6 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+
+                            <form:SimpleForm editable="true">
+                                <form:content>
+                                    <Label text="End Customer" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S4"/>
+                                        </layoutData>
+                                    </Label>
+                                        <Input value="">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Input>
+                                        <Button icon="sap-icon://search" width="10px">
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S2"/>
+                                            </layoutData>
+                                        </Button>
+                                    <Label text="Model Year" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Select>
+                                        <core:Item text="-- Select ModelYear --" />
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </Select>
+                                    <Label text="Protection No" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Input >
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </Input>
+                                    <Label text="Status" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Select>
+                                        <core:Item text="-- All --" />
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </Select>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL6 L6 M6 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <Button icon="sap-icon://zoom-in"/>
+                    <Button icon="sap-icon://add-folder"/>
+                    <Button icon="sap-icon://excel-attachment"/>
+                </Toolbar>
+                <table:Table rows="{ProgramProtectionList>/}" selectionMode="None" >
+                    <table:columns>
+                        <table:Column hAlign="Center" >
+                            <Label text="Status" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Protection No" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="VIN" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="HSC" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" width="30rem">
+                            <Label text="Description" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Model&#10;Year" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Body Type" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Order Date" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Start Date" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="End Date" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center">
+                            <Label text="Customer Name" wrapping="true" textAlign="Center"/>
+                            <table:template>
+                                <Text text=""/>
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

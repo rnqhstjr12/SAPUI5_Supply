@@ -125,7 +125,7 @@
                             <Label text="HSC &#10; VIN"/>
                         </table:multiLabels>
                         <table:template>
-                                <Link text="{mainModel>HSC VIN}" click="handleClick" visible="{= ${mainModel>data2} === 'Total' ? false : true }"/>
+                                <Link text="{mainModel>HSC VIN}" press="handleClick" visible="{= ${mainModel>data2} === 'Total' ? false : true }"/>
                         </table:template>
                     </table:Column>
                     <table:Column hAlign="Center">
@@ -197,7 +197,7 @@
                             <Label text="Order No"/>
                         </table:multiLabels>
                         <table:template>
-                            <Link text="{mainModel>Order No}" click="handleClick"/>
+                            <Link text="{mainModel>Order No}" press="handleClick"/>
                         </table:template>
                     </table:Column>
                     <table:Column hAlign="Center">
