@@ -1,0 +1,501 @@
+<mvc:View 
+    controllerName="project1.controller.ProgramProtectionDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:table="sap.ui.table"
+    xmlns:rowmodes="sap.ui.table.rowmodes"
+>
+    <f:DynamicPage toggleHeaderOnTitleClick="false">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="Program Protection Detail"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <f:content>
+                    <Toolbar >
+                        <ToolbarSpacer />
+                        <Button text="Edit" press="onEdit" visible="{= ${DetailData>/onEdit} === 'yEdit' ? false : true}"/>
+                        <Button text="List" press="onList" visible="{= ${DetailData>/onEdit} === 'yEdit' ? false : true}"/>
+                        <Button text="Save" press="onSave" visible="{= ${DetailData>/onEdit} === 'yEdit' ? true : false}"/>
+                        <Button text="Edit Name" press="onEditName" visible="{= ${DetailData>/onEdit} === 'yEdit' ? true : false}"/>
+                        <Button text="Edit Address" press="onEditAddress" visible="{= ${DetailData>/onEdit} === 'yEdit' ? true : false}"/>
+                        <Button text="Cancel" press="onCancel" visible="{= ${DetailData>/onEdit} === 'yEdit' ? true : false}"/>
+                    </Toolbar>
+                    <form:SimpleForm editable="true">
+                        <form:content>
+                            <form:SimpleForm editable="true">
+                                <form:content>
+                                    <Label text="Hyundai Program" wrapping="false" class="sapUiTinyMarginBegin">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                    </Label>
+                                    <Text text="{DetailData>/Hyundai Program}">
+                                        <layoutData>
+                                            <layout:GridData span="XL7 L7 M7 S6"/>
+                                        </layoutData>
+                                    </Text>
+                                </form:content>
+                                <form:layoutData>
+                                    <layout:GridData span="XL6 L6 M6 S12"/>
+                                </form:layoutData>
+                            </form:SimpleForm>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox>
+                <Panel width="auto" accessibleRole="Region">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="Vehicle Information"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <content>
+                        <form:SimpleForm editable="true">
+                            <form:content>
+                                <form:SimpleForm editable="true">
+                                    <form:content>
+                                        <Label text="VIN" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/VIN}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Model Year" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Model Year}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Exterior Colour" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Exterior Colour}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Sale Type" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Sale Type}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                    </form:content>
+                                    <form:layoutData>
+                                        <layout:GridData span="XL6 L6 M6 S12"/>
+                                    </form:layoutData>
+                                </form:SimpleForm>
+                                <form:SimpleForm editable="true">
+                                    <form:content>
+                                        <Label text="Car Line" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Car Line}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Body Type" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Body Type}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Interior Colour" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Interior Colour}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Sale Sub Type" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Sale Sub Type}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                    </form:content>
+                                    <form:layoutData>
+                                        <layout:GridData span="XL6 L6 M6 S12"/>
+                                    </form:layoutData>
+                                </form:SimpleForm>
+                            </form:content>
+                        </form:SimpleForm>
+                    </content>
+                </Panel>
+                <Panel width="auto" accessibleRole="Region">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="Protection Information"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <content>
+                        <form:SimpleForm editable="true">
+                            <form:content>
+                                <form:SimpleForm editable="true">
+                                    <form:content>
+                                        <Label text="Order Date" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Order Date}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Finance Portal Deal #" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Finance Portal Deal}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Remark" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Remark}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                    </form:content>
+                                    <form:layoutData>
+                                        <layout:GridData span="XL6 L6 M6 S12"/>
+                                    </form:layoutData>
+                                </form:SimpleForm>
+                                <form:SimpleForm editable="true">
+                                    <form:content>
+                                        <Label text="Protection Start" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Protection Start}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Protection End" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="{DetailData>/Protection End}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                    </form:content>
+                                    <form:layoutData>
+                                        <layout:GridData span="XL6 L6 M6 S12"/>
+                                    </form:layoutData>
+                                </form:SimpleForm>
+                            </form:content>
+                        </form:SimpleForm>
+                    </content>
+                </Panel>
+                <Panel width="auto" accessibleRole="Region">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="Customer Information"/>
+                        </Toolbar>
+                    </headerToolbar>
+                    <content>
+                        <form:SimpleForm editable="true">
+                            <form:content>
+                                <form:SimpleForm editable="true">
+                                    <form:content>
+                                        <Label text="Customer Type" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6"/>
+                                        </layoutData>
+                                        </Label>
+                                        <RadioButtonGroup columns="2" id="radio" editable="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Name' ? true : false}">
+                                            <RadioButton id="Person" text="Person" select="onCheckCustomerType" selected="true"/>
+                                            <RadioButton id="Business" text="Business" />
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </RadioButtonGroup>
+                                        <Label text="Company Name" id="CMLabelId" required="{= ${DetailData>/EditState} === 'Name' ? true : false}" wrapping="false" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/Radio} === 'Person' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox id="CMVBoxId" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/Radio} === 'Person' ? true : false}">
+                                            <Text text="{DetailData>/Company Name}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Name' ? false : true}"/>
+                                            <Input value="{DetailData>/Company Name}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Name' ? true : false}"/>
+                                                <layoutData>
+                                                    <layout:GridData span="XL7 L7 M7 S6"/>
+                                                </layoutData>
+                                        </VBox>
+                                        <Label id="FNLabelId" text="First Name" wrapping="false" required="{= ${DetailData>/EditState} === 'Name' ? true : false}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/Radio} === 'Person' ? false : true}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox id="FNVBoxId" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/Radio} === 'Person' ? false : true}">
+                                            <Text text="{DetailData>/First Name}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Name' ? false : true}"/>
+                                            <Input value="{DetailData>/First Name}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Name' ? true : false}"/>
+                                                <layoutData>
+                                                    <layout:GridData span="XL7 L7 M7 S6"/>
+                                                </layoutData>
+                                        </VBox>
+                                        <Label text="Address" wrapping="false" required="{= ${DetailData>/EditState} === 'Address' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Address}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Input value="{DetailData>/Address}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="City" wrapping="false" required="{= ${DetailData>/EditState} === 'Address' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/City}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Input width="50%" value="{DetailData>/City}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="Postal Code" wrapping="false" required="{= ${DetailData>/EditState} === 'Address' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Postal Code}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Input width="50%" placeholder="ex)L3R 6H2" value="{DetailData>/Postal Code}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="Title" wrapping="false" required="{= ${DetailData>/EditState} === 'Name' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Title}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Name' ? false : true}"/>
+                                            <Select items="{titleModel>/title}" id="selectTitle" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Name' ? true : false}" enabled="{= ${DetailData>/Radio} === 'Person' ? false : true}">
+                                                <items>
+                                                    <core:Item key="{titleModel>key}" text="{titleModel>text}"/>
+                                                </items>
+                                            </Select>
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="Language" wrapping="false" required="{= ${DetailData>/EditState} === 'Address' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Language}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Select id="selectLang" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}">
+                                                <core:Item key="None" text="-- Select --"/>
+                                                <core:Item key="E" text="E : English"/>
+                                                <core:Item key="K" text="K : Korean"/>
+                                                <core:Item key="C" text="C : Chinese"/>
+                                                <core:Item key="J" text="J : Japanese"/>
+                                                <core:Item key="G" text="G : German"/>
+                                            </Select>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="email" wrapping="false" required="{= ${DetailData>/EditState} === 'Address' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/email}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Input width="50%" value="{DetailData>/email}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                    </form:content>
+                                    <form:layoutData>
+                                        <layout:GridData span="XL6 L6 M6 S12"/>
+                                    </form:layoutData>
+                                </form:SimpleForm>
+                                <form:SimpleForm editable="true">
+                                    <form:content>
+                                        <Text text=" ">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label id="LNLabelId" text="Last Name" required="{= ${DetailData>/EditState} === 'Name' ? true : false}" wrapping="false" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/Radio} === 'Person' ? false : true}">
+                                            <layoutData>
+                                                <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                            </layoutData>
+                                        </Label>
+                                        <VBox id="LNVBoxId" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/Radio} === 'Person' ? false : true}">
+                                            <Text text="{DetailData>/Last Name}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Name' ? false : true}"/>
+                                            <Input value="{DetailData>/Last Name}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Name' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Text text=" " visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/Radio} === 'Person' ? true : false}">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="Province" wrapping="false" required="{= ${DetailData>/EditState} === 'Address' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Province}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Select id="selectProvince" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}">
+                                                <core:Item key="None" text="-- Select --"/>
+                                                <core:Item key="ON : Ontario" text="ON : Ontario"/>
+                                                <core:Item key="CA : California" text="CA : California"/>
+                                                <core:Item key="TX : Texas" text="TX : Texas"/>
+                                                <core:Item key="NY : New York" text="NY : New York"/>
+                                                <core:Item key="FL : Florida" text="FL : Florida"/>
+                                            </Select>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="Telephone" wrapping="false" required="{= ${DetailData>/EditState} === 'Address' ? true : false}">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Telephone}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Input width="50%" value="{DetailData>/Telephone}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}"/>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="Sex" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Sex}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Name' ? false : true}"/>
+                                            <Select id="selectYas" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Name' ? true : false}" enabled="{= ${DetailData>/Radio} === 'Person' ? false : true}">
+                                                <core:Item key="None" text="-- Select --"/>
+                                                <core:Item key="1 : Male" text="1 : Male"/>
+                                                <core:Item key="2 : Female" text="2 : Female"/>
+                                            </Select>
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="Age Group" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <VBox>
+                                            <Text text="{DetailData>/Age Group}" visible="{= ${DetailData>/onEdit} === 'nEdit' ? true : ${DetailData>/EditState} === 'Address' ? false : true}"/>
+                                            <Select id="selectAge" visible="{= ${DetailData>/onEdit} === 'nEdit' ? false : ${DetailData>/EditState} === 'Address' ? true : false}">
+                                                <core:Item key="None" text="-- Select --"/>
+                                                <core:Item key="1 : Infant" text="1 : Infant"/>
+                                                <core:Item key="2 : Toddler" text="2 : Toddler"/>
+                                                <core:Item key="3 : Child" text="3 : Child"/>
+                                                <core:Item key="4 : Teenager" text="4 : Teenager"/>
+                                                <core:Item key="5 : Young Adult" text="5 : Young Adult"/>
+                                                <core:Item key="6 : Middle-aged Adult" text="6 : Middle-aged Adult"/>
+                                                <core:Item key="7 : Senior" text="7 : Senior"/>
+                                            </Select>
+                                            <layoutData>
+                                                <layout:GridData span="XL9 L9 M9 S6"/>
+                                            </layoutData>
+                                        </VBox>
+                                        <Label text="" wrapping="false">
+                                        <layoutData>
+                                            <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
+                                        </layoutData>
+                                        </Label>
+                                        <Text text="">
+                                            <layoutData>
+                                                <layout:GridData span="XL7 L7 M7 S6"/>
+                                            </layoutData>
+                                        </Text>
+                                    </form:content>
+                                    <form:layoutData>
+                                        <layout:GridData span="XL6 L6 M6 S12"/>
+                                    </form:layoutData>
+                                </form:SimpleForm>
+                            </form:content>
+                        </form:SimpleForm>
+                    </content>
+                </Panel>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

@@ -24,12 +24,12 @@
                         <form:content>
                             <form:SimpleForm editable="true">
                                 <form:content>
-                                    <Label text="VIN" wrapping="false">
+                                    <Label text="VIN" wrapping="false" required="true">
                                         <layoutData>
                                             <layout:GridData span="XL3 L3 M3 S6"/>
                                         </layoutData>
                                     </Label>
-                                    <Input value="">
+                                    <Input value="" id="VINInput">
                                         <layoutData>
                                             <layout:GridData span="XL7 L7 M7 S6"/>
                                         </layoutData>
@@ -56,7 +56,7 @@
                                             <layout:GridData span="XL7 L7 M7 S6"/>
                                         </layoutData>
                                     </Select>
-                                    <Label text="Order Date" wrapping="false">
+                                    <Label text="Order Date" wrapping="false" required="true">
                                         <layoutData>
                                             <layout:GridData span="XL3 L3 M3 S6" linebreak="true"/>
                                         </layoutData>
@@ -93,12 +93,12 @@
                                             <layout:GridData span="XL3 L3 M3 S4"/>
                                         </layoutData>
                                     </Label>
-                                        <Input value="">
+                                        <Input id="ECInput" value="">
                                             <layoutData>
                                                 <layout:GridData span="XL7 L7 M7 S6"/>
                                             </layoutData>
                                         </Input>
-                                        <Button icon="sap-icon://search" width="10px">
+                                        <Button icon="sap-icon://search" width="10px" press="onECSearch">
                                             <layoutData>
                                                 <layout:GridData span="XL2 L2 M2 S2"/>
                                             </layoutData>
@@ -149,76 +149,76 @@
             <VBox>
                 <Toolbar>
                     <ToolbarSpacer/>
-                    <Button icon="sap-icon://zoom-in"/>
-                    <Button icon="sap-icon://add-folder"/>
-                    <Button icon="sap-icon://excel-attachment"/>
+                    <Button icon="sap-icon://zoom-in" press="onInquiry"/>
+                    <Button icon="sap-icon://add-folder" press="onCreate"/>
+                    <Button icon="sap-icon://excel-attachment" press="onExcel"/>
                 </Toolbar>
-                <table:Table rows="{ProgramProtectionList>/}" selectionMode="None" >
+                <table:Table rows="{InquiryList>/}" selectionMode="None" >
                     <table:columns>
                         <table:Column hAlign="Center" >
                             <Label text="Status" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>Status}"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="Protection No" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Link text="{InquiryList>Protection No}" press=".onDetail"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="VIN" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Link text="{InquiryList>VIN}" press=".onDetail"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="HSC" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Link text="{InquiryList>HSC}" press=".onDetail"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center" width="30rem">
                             <Label text="Description" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>Description}"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="Model&#10;Year" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>Model Year}"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="Body Type" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>Body Type}"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="Order Date" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>Order Date}"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="Start Date" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>Start Date}"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="End Date" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>End Date}"/>
                             </table:template>
                         </table:Column>
                         <table:Column hAlign="Center">
                             <Label text="Customer Name" wrapping="true" textAlign="Center"/>
                             <table:template>
-                                <Text text=""/>
+                                <Text text="{InquiryList>Customer Name}"/>
                             </table:template>
                         </table:Column>
                     </table:columns>

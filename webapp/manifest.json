@@ -160,6 +160,13 @@
           "target": [
             "ProgramProtectionList"
           ]
+        },
+        {
+          "name": "ProgramProtectionDetail",
+          "pattern": "ProgramProtectionDetail/{DetailData}",
+          "target": [
+            "ProgramProtectionDetail"
+          ]
         }
       ],
       "targets": {
@@ -246,6 +253,13 @@
           "clearControlAggregation": false,
           "viewId": "ProgramProtectionList",
           "viewName": "ProgramProtectionList"
+        },
+        "ProgramProtectionDetail": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ProgramProtectionDetail",
+          "viewName": "ProgramProtectionDetail"
         }
       }
     },
