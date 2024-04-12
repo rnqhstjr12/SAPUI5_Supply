@@ -1,0 +1,273 @@
+<mvc:View controllerName="project1.controller.spc3"
+    xmlns:uxap="sap.uxap"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:table="sap.ui.table"
+    xmlns:layout="sap.ui.layout"
+	height="100%"
+>
+    <uxap:ObjectPageLayout 
+        preserveHeaderStateOnScroll="true" 
+        upperCaseAnchorBar="false" 
+        showFooter="true" 
+        showTitleInHeaderContent="true"
+        headerContentPinnable="true"
+        useIconTabBar="true">
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:heading>
+                    <HBox>
+                        <Button press="onBack" type="Back"/>
+                        <Title text="자재 내역({IT_HEADER_DETAIL_MODEL>/IT_HEADER_MATNR})" titleStyle="H4"/>
+                    </HBox>
+                </uxap:heading>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <form:SimpleForm >
+                    <form:content>
+                        <form:SimpleForm 
+                            layout="GridLayout" 
+                            >
+                            <!-- Label="XL1 L1 M2 S6" 
+                            Text="XL3 L3 M4 S6" -->
+                            <form:content>
+                                <Label text="플랜트" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_WERKS}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text="생산라인" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_MDV01}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text="자재코드" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_MATNR}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text="구분" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_ZZGUB2}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text=".LOT No" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_ZZLOTID}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                            </form:content>
+                            <form:layoutData>
+                                <layout:GridData span="XL6 L6 M6 S6"/>
+                            </form:layoutData>
+                        </form:SimpleForm>
+
+                        <form:SimpleForm layout="GridLayout">
+                            <form:content>
+                                <Label text="플랜트 내역" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_NAME1}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text="생산라인 내역" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_KTEXT}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text="자재 내역" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_MAKTX}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text="근무조" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_ZZGUB1}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                                <Label text="검사 시작일" textDirection="RTL">
+                                    <layoutData>
+                                        <layout:GridData span="XL1 L1 M2 S6" linebreak="true"/>
+                                    </layoutData>
+                                </Label>
+                                <Text text="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_ERSTELLER_PASTRTERM}">
+                                    <layoutData>
+                                        <layout:GridData span="XL3 L3 M4 S6"/>
+                                    </layoutData>
+                                </Text>
+                            </form:content>
+                            <form:layoutData>
+                                <layout:GridData span="XL6 L6 M6 S6"/>
+                            </form:layoutData>
+                        </form:SimpleForm>
+                    </form:content>
+                </form:SimpleForm>
+        </uxap:headerContent>
+        <uxap:sections id="section">
+            <uxap:ObjectPageSection titleUppercase="false" title="검사 결과" id="selectSection">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection titleUppercase="false">
+                        <VBox width="100%" alignContent="Center">
+                            <HBox direction="Column" class="sapUiTinyMarginBottom">
+                        
+                                <form:SimpleForm >
+                                    <form:content>
+                                        <Label text="규격">
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S2"/>
+                                            </layoutData>
+                                        </Label>
+                                        <Text text="{IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_SOLLWERT}">
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S2"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="기준">
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S2"/>
+                                            </layoutData>
+                                        </Label>
+                                        <Text text="{IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_TOLERANZOB} ~ {IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_TOLERANZUN}">
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S2"/>
+                                            </layoutData>
+                                        </Text>
+                                        <Label text="단위">
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S2"/>
+                                            </layoutData>
+                                        </Label>
+                                        <Text text="{IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_PROBEMGEH}">
+                                            <layoutData>
+                                                <layout:GridData span="XL2 L2 M2 S2"/>
+                                            </layoutData>
+                                        </Text>
+                                    </form:content>
+                                </form:SimpleForm>
+                            </HBox>
+                            <Toolbar style="Standard"/>
+                            <HBox alignContent="Center" class="sapUiTinyMarginBottom">
+                                <table:Table 
+                                    id="tableId"
+                                    selectionMode="None" 
+                                    rows="{IT_DETAIL_DETAIL_MODEL>/IT_MULTI}"
+                                    visibleRowCountMode="Auto"
+                                    >
+                                    <table:columns>
+                                        <table:Column width="5%" hAlign="Center">
+                                            <Label text="No."/>
+                                            <table:template>
+                                                <Text text="{IT_DETAIL_DETAIL_MODEL>MERKNR}" />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="결과"/>
+                                            <table:template>
+                                                <Input 
+                                                    value="{IT_DETAIL_DETAIL_MODEL>ORIGINAL_INPUT}" 
+                                                    liveChange="onValueInputLiveChange" 
+                                                    type="Number"
+                                                    />
+                                            </table:template>
+                                        </table:Column>
+                                        <table:Column hAlign="Center">
+                                            <Label text="평가"/>
+                                            <table:template>
+                                                <core:Icon 
+                                                    src="{= ${IT_DETAIL_DETAIL_MODEL>DETAILERG} ? 'sap-icon://accept' : ${IT_DETAIL_DETAIL_MODEL>DETAILERG} === false ? 'sap-icon://decline' : null }" 
+                                                    color="{= ${IT_DETAIL_DETAIL_MODEL>DETAILERG} ? 'green' : 'red'}"
+                                                    />
+                                            </table:template>
+                                        </table:Column>
+                                    </table:columns>
+                                </table:Table>
+                            </HBox>
+                            <HBox >
+                                <Label text="이탈사유"/>
+                            </HBox>
+                            <HBox width="100%">
+                                <TextArea width="100%" cols="60" rows="3" value="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_REASON}"/>
+                            </HBox>
+                            <HBox >
+                                <Label text="조치내용"/>
+                            </HBox>
+                            <HBox width="100%">
+                                <TextArea width="100%" cols="60" rows="3" value="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_SOLVE}"/>
+                            </HBox>
+                            <HBox >
+                                <Label text="결과"/>
+                            </HBox>
+                            <HBox width="100%">
+                                <TextArea width="100%" cols="60" rows="3" value="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_RESULT}"/>
+                            </HBox>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+            
+			<uxap:ObjectPageSection titleUppercase="false" title=" " id="delteSection">
+                <uxap:subSections >
+                    <uxap:ObjectPageSubSection >
+                        <VBox>
+                        </VBox>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+			</uxap:ObjectPageSection>
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar >
+                <ToolbarSpacer/>
+                    <Button text="돌아가기" type="Emphasized" press="onBack"/>
+                    <Button text="저장" type="Emphasized" press="onSave"/>
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

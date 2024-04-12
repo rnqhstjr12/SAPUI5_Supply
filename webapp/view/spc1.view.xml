@@ -1,0 +1,162 @@
+<mvc:View
+	controllerName="project1.controller.spc1"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+	height="100%"
+>
+	<f:DynamicPage showFooter="true" toggleHeaderOnTitleClick="false">
+		<f:title>
+			<f:DynamicPageTitle >
+				<f:heading>
+					<Title text="중량검사 결과관리"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:content>
+			<VBox>
+				<Title text="검색조건" titleStyle="H4" class="sapUiLargeMargin"/>
+				<form:SimpleForm >
+					<form:content>
+						<Label text="플랜트" required="true">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2"/>
+							</layoutData>
+						</Label>
+						<ComboBox id="werks" fieldGroupIds="Required,Search" change="onLiveChange" items="{IT_HEADER_MODEL>/}">
+							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_WERKS}" text="{IT_HEADER_MODEL>IT_HEADER_WERKS}" />
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</ComboBox>
+						<Label text="자재코드">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<ComboBox id="matnr" items="{IT_HEADER_MODEL>/}">
+							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_MATNR}" text="{IT_HEADER_MODEL>IT_HEADER_MATNR}" />
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</ComboBox>
+						<Label text="오더번호">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<ComboBox id="prueflos" items="{IT_HEADER_MODEL>/}">
+							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_PRUEFLOS}" text="{IT_HEADER_MODEL>IT_HEADER_PRUEFLOS}" />
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</ComboBox>
+						<Label text="생산라인">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<MultiComboBox id="mdv" items="{IT_HEADER_MODEL>/}" selectionChange="onSelectToken">
+							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_MDV01}" text="{IT_HEADER_MODEL>IT_HEADER_MDV01}" />
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</MultiComboBox>
+						<Label text="구분">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<MultiComboBox id="gub2">
+							<core:Item key="finished" text="완제품" />
+							<core:Item key="charge" text="충전" />
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</MultiComboBox>
+						<Label text="근무조">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<MultiComboBox id="gub1">
+							<core:Item key="day" text="주간" />
+							<core:Item key="night" text="야간" />
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</MultiComboBox>
+						<Label text="오더 시작일">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<DatePicker 
+							id="ersteldat1"
+							displayFormat="yyyy.MM.dd"
+							valueFormat="yyyy.MM.dd"
+							change="onDateCheck">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</DatePicker>
+						<Label text=" ">
+							<layoutData>
+								<layout:GridData span="XL1 L1 M2 S2"/>
+							</layoutData>
+						</Label>
+						<DatePicker 
+							id="ersteldat2"
+							displayFormat="yyyy.MM.dd"
+							valueFormat="yyyy.MM.dd"
+							change="onDateCheck">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</DatePicker>
+						<Label text="검사 시작일" required="true">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
+							</layoutData>
+						</Label>
+						<DatePicker 
+							id="ersteller_pastrterm1" 
+							displayFormat="yyyy.MM.dd"
+							valueFormat="yyyy.MM.dd"
+							change="onDateCheck"
+							fieldGroupIds="Required,Search"
+						>
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</DatePicker>
+						<Label text="종료" required="true">
+							<layoutData>
+								<layout:GridData span="XL1 L1 M2 S2"/>
+							</layoutData>
+						</Label>
+						<DatePicker 
+							id="ersteller_pastrterm2"
+							displayFormat="yyyy.MM.dd"
+							valueFormat="yyyy.MM.dd"
+							change="onDateCheck"
+							fieldGroupIds="Required,Search">
+							<layoutData>
+								<layout:GridData span="XL2 L2 M2 S4"/>
+							</layoutData>
+						</DatePicker>
+					</form:content>
+				</form:SimpleForm>
+			</VBox>
+		</f:content>
+		<f:footer>
+            <OverflowToolbar >
+                    <ToolbarSpacer/>
+					<Button text="실행" press="onSearchBtn" type="Emphasized"/>
+            </OverflowToolbar>
+        </f:footer>
+	</f:DynamicPage>
+</mvc:View>

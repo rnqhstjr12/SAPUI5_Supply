@@ -474,7 +474,7 @@ sap.ui.define([
             
             searchData.push(oTotal);
             
-            oModel.setData(searchData);
+            oModel.setData(new JSONModel(searchData));
             oModel.setProperty("/SubDealerOrder", totalSub_DO);
             oModel.setProperty("/ConDealerOrder", totalCon_DO);
             oModel.setProperty("/SubSupOrder", totalSub_Sup);

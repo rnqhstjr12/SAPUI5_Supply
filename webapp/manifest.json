@@ -167,6 +167,27 @@
           "target": [
             "ProgramProtectionDetail"
           ]
+        },
+        {
+          "name": "spc1",
+          "pattern": "spc1",
+          "target": [
+            "spc1"
+          ]
+        },
+        {
+          "name": "spc2",
+          "pattern": "spc2",
+          "target": [
+            "spc2"
+          ]
+        },
+        {
+          "name": "spc3",
+          "pattern": "spc3",
+          "target": [
+            "spc3"
+          ]
         }
       ],
       "targets": {
@@ -260,6 +281,27 @@
           "clearControlAggregation": false,
           "viewId": "ProgramProtectionDetail",
           "viewName": "ProgramProtectionDetail"
+        },
+        "spc1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "spc1",
+          "viewName": "spc1"
+        },
+        "spc2": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "spc2",
+          "viewName": "spc2"
+        },
+        "spc3": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "spc3",
+          "viewName": "spc3"
         }
       }
     },

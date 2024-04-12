@@ -34,5 +34,8 @@ sap.ui.define([
             onProgramProtectionList: function () {
                 this.getView().getController().getOwnerComponent().getRouter().navTo("ProgramProtectionList");
             },
+            onSPC: function () {
+                this.getView().getController().getOwnerComponent().getRouter().navTo("spc1");
+            }
         });
     });
