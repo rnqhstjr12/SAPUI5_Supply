@@ -27,7 +27,6 @@ sap.ui.define([
         },
 
         onSelectChange: function (oEvent) {
-            console.log("a");
         },
 
         onHeaderSearchRefresh: function () {
@@ -72,9 +71,10 @@ sap.ui.define([
                 return erp === null ? item : item["ERP_CHECK"] === erp;
             });
 
-            console.log(filterData);
+            // console.log(filterData);
             this.getView().setModel(new JSONModel(filterData),"IT_HEADER_MODEL");
             this.getView().getModel("IT_HEADER_MODEL").refresh();
+            // console.log(this.getView().getModel("IT_HEADER_MODEL"));
         },
 
         onRefresh: function () {
@@ -89,6 +89,30 @@ sap.ui.define([
             this.getView().getController().getOwnerComponent().getRouter().navTo("spc3");
 
         },
+
+        onERPTransfer: function () {
+            let headerData = JSON.parse(localStorage.getItem("IT_HEADER_MODEL"));
+            let oModel = this.getView().getModel("IT_HEADER_MODEL").getData();
+            for (let i = 0; i < SearchData.length; i++) {
+                if (SearchData[i].TEST_CHECK) {
+                    SearchData[i].ERP_CHECK = true;
+                    oModel[i].ERP_CHECK = true;
+                    console.log("----------------- ERP전송")
+                    console.log(JSON.parse(localStorage.getItem(headerData.IT_HEADER_PRUEFLOS)));
+                    console.log(SearchData[i]);
+                    console.log("-------------------------")
+                }
+            }
+            for (let i = 0; i < headerData.length; i++) {
+                if (headerData[i].TEST_CHECK) {
+                    headerData[i].ERP_CHECK = true;
+                }
+            }
+            localStorage.setItem("SearchData", JSON.stringify(SearchData));
+            localStorage.setItem("IT_HEADER_MODEL", JSON.stringify(headerData));
+            this.getView().getModel("IT_HEADER_MODEL").refresh();
+        },
+
         onBack: function () {
             this.getView().getController().getOwnerComponent().getRouter().navTo("spc1");
         },

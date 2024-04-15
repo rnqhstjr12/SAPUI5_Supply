@@ -9,7 +9,7 @@
     xmlns:layout="sap.ui.layout"
 	height="100%"
 >
-	<f:DynamicPage toggleHeaderOnTitleClick="false" showFooter="true" >
+	<f:DynamicPage toggleHeaderOnTitleClick="true" showFooter="true" >
 		<f:title>
 			<f:DynamicPageTitle >
 				<f:heading>
@@ -25,7 +25,7 @@
                 <f:content>
                     <form:SimpleForm width="100%">
                         <form:content >
-                            <Label text="결과입력">
+                            <Label text="결과입력" >
                                 <layoutData>
                                     <layout:GridData span="XL2 L2 M6 S6"/>
                                 </layoutData>
@@ -53,8 +53,8 @@
                             </Select>
                             <Toolbar >
                                 <ToolbarSpacer/>
-                                <Button text="초기화" press="onHeaderSearchRefresh" type="Emphasized"/>
                                 <Button text="검색" press="onHeaderSearch" type="Emphasized"/>
+                                <Button text="초기화" press="onHeaderSearchRefresh" type="Emphasized"/>
                             </Toolbar>
                         </form:content>
                     </form:SimpleForm>
@@ -63,7 +63,7 @@
         </f:header>
 		<f:content>
             <VBox alignContent="Center">
-                <Text text="중량 검사로트 리스트({= ${IT_HEADER_MODEL>/}.length})"/>
+                <Title text="중량 검사로트 리스트 ({= ${IT_HEADER_MODEL>/}.length})" titleStyle="H4" class="sapUiTinyMarginBottom"/>
                 <Table 
                     id="SpcTable" 
                     items="{IT_HEADER_MODEL>/}" 
@@ -76,13 +76,13 @@
                         <Column hAlign="Center" >
                             <Label text="생산라인" />
                         </Column>
-                        <Column hAlign="Center" >
+                        <Column hAlign="Left" >
                             <Label text="생산라인 명"/>
                         </Column>
                         <Column hAlign="Center" >
                             <Label text="자재 코드"/>
                         </Column>
-                        <Column hAlign="Center" >
+                        <Column hAlign="Left" >
                             <Label text="자재 내역"/>
                         </Column>
                         <Column hAlign="Center" >
@@ -118,8 +118,8 @@
                             <Text text="{IT_HEADER_MODEL>IT_HEADER_ZZLOTID}" />
                             <Text text="{IT_HEADER_MODEL>IT_HEADER_PRUEFLOS}" />
                             <Text text="{IT_HEADER_MODEL>IT_HEADER_ERSTELLER_PASTRTERM}" />
-                            <Text text="{= ${IT_HEADER_MODEL>TEST_CHECK} ? 'O' : 'X'}" />
-                            <Text text="{= ${IT_HEADER_MODEL>ERP_CHECK} ? 'O' : 'X'}" />
+                            <Text text="{= ${IT_HEADER_MODEL>TEST_CHECK} === true ? 'O' : null}" />
+                            <Text text="{= ${IT_HEADER_MODEL>ERP_CHECK} === true ? 'O' : null}" />
                         </cells>
                     </ColumnListItem >
                 </Table>
@@ -130,7 +130,7 @@
                     <Button text="돌아가기" type="Emphasized" press="onBack"/>
                     <ToolbarSpacer/>
                     <Button text="새로고침" type="Emphasized" press="onRefresh" class="sapUiTinyMarginEnd"/>
-                    <Button text="ERP 결과전송" type="Emphasized"/>
+                    <Button text="ERP 결과전송" type="Emphasized" press="onERPTransfer"/>
             </OverflowToolbar>
         </f:footer>
 	</f:DynamicPage>

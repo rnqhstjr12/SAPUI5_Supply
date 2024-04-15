@@ -4,7 +4,26 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
-], function (Controller, JSONModel, Filter, FilterOperator, MessageToast) {
+    'sap/m/MessagePopover',
+	'sap/m/MessageItem',
+    "sap/ui/core/Messaging",
+    'sap/ui/core/message/Message',
+    'sap/ui/core/library',
+    "sap/ui/dom/isBehindOtherElement",
+    'sap/ui/core/Element'
+], function (
+    Controller, 
+    JSONModel, 
+    Filter, 
+    FilterOperator, 
+    MessageToast, 
+    MessagePopover, 
+    MessageItem, 
+    Messaging, 
+    Message, 
+    library, 
+    isBehindOtherElement, 
+    Element) {
     "use strict";
     let _this;
     return Controller.extend("project1.controller.spc1", {
@@ -13,6 +32,7 @@ sap.ui.define([
             myRoute.attachPatternMatched(this.onMyRoutePatternMatched, this);
         },
         onMyRoutePatternMatched: function () {
+            localStorage.clear();
             this._globalVarSet();
             this._ViewData();
         },
@@ -246,11 +266,28 @@ sap.ui.define([
                     "IT_DETAIL_ORIGINAL_INPUT": ""
                 }
             ];
-            this.getView().setModel(new JSONModel(IT_HEADER), "IT_HEADER_MODEL")
-            this.getView().setModel(new JSONModel(IT_DETAIL), "IT_DETAIL_MODEL")
-            console.log(this.getView().getModel("IT_HEADER_MODEL"));
+            if (!localStorage.getItem("IT_HEADER_MODEL")) {
+                localStorage.setItem("IT_HEADER_MODEL", JSON.stringify(IT_HEADER));
+                this.getView().setModel(new JSONModel(IT_HEADER), "IT_HEADER_MODEL");
+            } else {
+                this.getView().setModel(new JSONModel(JSON.parse(localStorage.getItem("IT_HEADER_MODEL"))), "IT_HEADER_MODEL");
+            }
+            if (!localStorage.getItem("IT_DETAIL_MODEL")) {
+                localStorage.setItem("IT_DETAIL_MODEL", JSON.stringify(IT_DETAIL));
+                this.getView().setModel(new JSONModel(IT_DETAIL), "IT_DETAIL_MODEL");
+            } else {
+                this.getView().setModel(new JSONModel(JSON.parse(localStorage.getItem("IT_DETAIL_MODEL"))), "IT_DETAIL_MODEL");
+            }
+            // console.log(this.getView().getModel("IT_HEADER_MODEL"));
         },
         onDateCheck: function (oEvent) {
+            let check = true;
+            if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
+                check = false
+            }
+            this._onEnabled(!this.globalCheck("Input", _this), !this.globalCheck("Date", _this), check);
+
+
             let selectObj = oEvent.getSource().getId();
             let ersteldat1 = this.byId("ersteldat1").getDateValue();
             let ersteldat2 = this.byId("ersteldat2").getDateValue();
@@ -260,7 +297,7 @@ sap.ui.define([
             let nowDate2 = this._DateSet(ersteller_pastrterm1);
             this.byId("ersteller_pastrterm2").setMinDate(new Date(nowDate2));
             this.byId("ersteller_pastrterm2").setMaxDate(new Date(this._DateSet2(nowDate2)));
-            console.log(ersteldat1 > ersteldat2);
+            // console.log(ersteldat1 > ersteldat2);
             if (selectObj.includes("ersteldat1")) {
                 if (ersteldat1 && ersteldat2) {
                     if (ersteldat1 > ersteldat2) {
@@ -305,14 +342,79 @@ sap.ui.define([
                     }
                 }
             }
-        },
 
+            
+        },
         
 
         onLiveChange: function (oEvent) {
+            let check = true;
+            if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
+                check = false
+            }
+            this._onEnabled(!this.globalCheck("Input", _this), !this.globalCheck("Date", _this), check);
+
             let sValue = oEvent.getSource().getValue();
+            let oModel = this.getView().getModel("IT_HEADER_MODEL");
+            let oData = oModel.getData();
             if (sValue) {
-                oEvent.getSource().setValueState("None")
+                for (let i = 0; i < oData.length; i++) {
+                    if (String(sValue) === String(oData[i].IT_HEADER_WERKS)){
+                        oEvent.getSource().setValueState("None")
+                        return;
+                    } else {
+                        oEvent.getSource().setValueState("Error")
+                        oEvent.getSource().setValueStateText("플랜트가 일치하지 않습니다.");
+                    }
+
+                }
+            }
+        },
+
+        // handleMessagePopoverPress: function () {
+
+        // },
+
+        // _Popover: function () {
+        //     let oButton = this.byId("messagePopoverBtn");
+        //     let werks = this.byId("werks");
+        //     let ersteller_pastrterm1 = this.byId("ersteller_pastrterm1");
+
+        //     oButton.setVisible(true);
+
+        //     this.handleRequiredField();
+
+
+        // },
+
+        // handleRequiredField: function (oInput) {
+        //     let sTarget = oInput.getBindingContext().getPath() + '/' + oInput.getBindingPath("value");
+        //     console.log(sTarget);
+        // },
+
+
+        // buttonIconFormatter: function () {
+        //     let sIcon;
+        //     let 
+        // },
+        _onEnabled: function (first, second, bool) {
+            if (first) {
+                this.byId("werks").setEnabled(true);
+            } else {
+                this.byId("werks").setEnabled(false);
+            }
+            this.byId("matnr").setEnabled(bool);
+            this.byId("prueflos").setEnabled(bool);
+            this.byId("mdv").setEnabled(bool);
+            this.byId("gub2").setEnabled(bool);
+            this.byId("gub1").setEnabled(bool);
+            this.byId("ersteldat1").setEnabled(bool);
+            this.byId("ersteldat2").setEnabled(bool);
+            this.byId("ersteller_pastrterm2").setEnabled(bool);
+            if (second) {
+                this.byId("ersteller_pastrterm1").setEnabled(true);
+            } else {
+                this.byId("ersteller_pastrterm1").setEnabled(false);
             }
         },
         
@@ -327,17 +429,23 @@ sap.ui.define([
             let ersteldat2 = this.byId("ersteldat2").getDateValue();
             let ersteller_pastrterm1 = this.byId("ersteller_pastrterm1").getDateValue();
             let ersteller_pastrterm2 = this.byId("ersteller_pastrterm2").getDateValue();
+            let check = true;
+            if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
+                check = false
+            }
+            this._onEnabled(!this.globalCheck("Input", _this), !this.globalCheck("Date", _this), check);
+            // this._Popover();
 
-            console.log(werks);
-            console.log(matnr);
-            console.log(prueflos);
-            console.log(mdv);
-            console.log(gub2);
-            console.log(gub1);
-            console.log(ersteldat1);
-            console.log(ersteldat2);
-            console.log(ersteller_pastrterm1);
-            console.log(ersteller_pastrterm2);
+            // console.log(werks);
+            // console.log(matnr);
+            // console.log(prueflos);
+            // console.log(mdv);
+            // console.log(gub2);
+            // console.log(gub1);
+            // console.log(ersteldat1);
+            // console.log(ersteldat2);
+            // console.log(ersteller_pastrterm1);
+            // console.log(ersteller_pastrterm2);
             if (!this.globalCheck("Search", _this)){
                 MessageToast.show("값이 올바르지 않습니다.");
                 return;
@@ -353,7 +461,7 @@ sap.ui.define([
             let filterDetailData = oDetailData.filter(function(item) {
                 return String(item["IT_HEADER_PRUEFLOS"]).includes(prueflos);
             })
-            console.log(filterData);
+            // console.log(filterData);
             // let oFilter = [];
             // oFilter.push(new Filter("IT_HEADER_WERKS", FilterOperator.Contains, werks));
             // oFilter.push(new Filter("IT_HEADER_MATNR", FilterOperator.Contains, matnr));
@@ -373,7 +481,7 @@ sap.ui.define([
 
         _SortData: function (jData, sortName1, sortName2, sortName3) {
             let sortData = jData.sort((a, b) => a[sortName3].localeCompare(b[sortName3]) || a[sortName2].localeCompare(b[sortName2]) ||  a[sortName1].localeCompare(b[sortName1]));
-            console.log(sortData);
+            // console.log(sortData);
             return sortData;
         },
 

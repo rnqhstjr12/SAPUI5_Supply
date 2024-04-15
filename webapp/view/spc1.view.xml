@@ -8,7 +8,7 @@
     xmlns:layout="sap.ui.layout"
 	height="100%"
 >
-	<f:DynamicPage showFooter="true" toggleHeaderOnTitleClick="false">
+	<f:DynamicPage showFooter="true" toggleHeaderOnTitleClick="false" id="messageHandlingPage">
 		<f:title>
 			<f:DynamicPageTitle >
 				<f:heading>
@@ -26,7 +26,11 @@
 								<layout:GridData span="XL2 L2 M2 S2"/>
 							</layoutData>
 						</Label>
-						<ComboBox id="werks" fieldGroupIds="Required,Search" change="onLiveChange" items="{IT_HEADER_MODEL>/}">
+						<ComboBox id="werks" 
+							fieldGroupIds="Required,Search,Input" 
+							change="onLiveChange" 
+							items="{IT_HEADER_MODEL>/}"
+							value="{path : ''}">
 							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_WERKS}" text="{IT_HEADER_MODEL>IT_HEADER_WERKS}" />
 							<layoutData>
 								<layout:GridData span="XL2 L2 M2 S4"/>
@@ -124,16 +128,17 @@
 						</Label>
 						<DatePicker 
 							id="ersteller_pastrterm1" 
+							value="{path : ''}"
 							displayFormat="yyyy.MM.dd"
 							valueFormat="yyyy.MM.dd"
 							change="onDateCheck"
-							fieldGroupIds="Required,Search"
+							fieldGroupIds="Required,Search,Date"
 						>
 							<layoutData>
 								<layout:GridData span="XL2 L2 M2 S4"/>
 							</layoutData>
 						</DatePicker>
-						<Label text="종료" required="true">
+						<Label text="종료">
 							<layoutData>
 								<layout:GridData span="XL1 L1 M2 S2"/>
 							</layoutData>
@@ -142,8 +147,7 @@
 							id="ersteller_pastrterm2"
 							displayFormat="yyyy.MM.dd"
 							valueFormat="yyyy.MM.dd"
-							change="onDateCheck"
-							fieldGroupIds="Required,Search">
+							change="onDateCheck">
 							<layoutData>
 								<layout:GridData span="XL2 L2 M2 S4"/>
 							</layoutData>
@@ -154,8 +158,14 @@
 		</f:content>
 		<f:footer>
             <OverflowToolbar >
-                    <ToolbarSpacer/>
-					<Button text="실행" press="onSearchBtn" type="Emphasized"/>
+				<Button id="messagePopoverBtn"
+					visible="{=!!${message>/}.length}"
+					icon="{ path: '/', formatter: '.buttonIconFormatter' }"
+					type="{ path: '/', formatter: '.buttonTypeFormatter' }"
+					text= "{path: '/', formatter: '.highestSeverityMessages' }"
+					ariaHasPopup="Dialog"/>
+				<ToolbarSpacer/>
+				<Button text="실행" press="onSearchBtn" type="Emphasized"/>
             </OverflowToolbar>
         </f:footer>
 	</f:DynamicPage>
