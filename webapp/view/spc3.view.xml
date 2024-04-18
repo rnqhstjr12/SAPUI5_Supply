@@ -274,6 +274,7 @@
         </uxap:sections>
         <uxap:footer>
             <OverflowToolbar >
+                <!-- <Button press="_globalVarSet" text="test"/> -->
                 <ToolbarSpacer/>
                     <Button text="저장" type="Emphasized" press="onSave"/>
                     <Button text="돌아가기" type="Emphasized" press="onBack"/>

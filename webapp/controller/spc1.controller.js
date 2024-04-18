@@ -32,7 +32,7 @@ sap.ui.define([
             myRoute.attachPatternMatched(this.onMyRoutePatternMatched, this);
         },
         onMyRoutePatternMatched: function () {
-            localStorage.clear();
+            // localStorage.clear();
             this._globalVarSet();
             this._ViewData();
         },
@@ -285,7 +285,7 @@ sap.ui.define([
             if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
                 check = false
             }
-            this._onEnabled(!this.globalCheck("Input", _this), !this.globalCheck("Date", _this), check);
+            this._onEnabled(this.globalCheck("Input", _this), this.globalCheck("Date", _this), check);
 
 
             let selectObj = oEvent.getSource().getId();
@@ -348,27 +348,27 @@ sap.ui.define([
         
 
         onLiveChange: function (oEvent) {
-            let check = true;
-            if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
-                check = false
-            }
-            this._onEnabled(!this.globalCheck("Input", _this), !this.globalCheck("Date", _this), check);
-
             let sValue = oEvent.getSource().getValue();
             let oModel = this.getView().getModel("IT_HEADER_MODEL");
             let oData = oModel.getData();
+
             if (sValue) {
+                if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
+                    this._onEnabled(true, true, false);
+                } else {
+                    this._onEnabled(true, true, true);
+                }
                 for (let i = 0; i < oData.length; i++) {
                     if (String(sValue) === String(oData[i].IT_HEADER_WERKS)){
                         oEvent.getSource().setValueState("None")
-                        return;
+                        break;
                     } else {
                         oEvent.getSource().setValueState("Error")
                         oEvent.getSource().setValueStateText("플랜트가 일치하지 않습니다.");
                     }
-
                 }
             }
+            
         },
 
         // handleMessagePopoverPress: function () {
@@ -429,11 +429,36 @@ sap.ui.define([
             let ersteldat2 = this.byId("ersteldat2").getDateValue();
             let ersteller_pastrterm1 = this.byId("ersteller_pastrterm1").getDateValue();
             let ersteller_pastrterm2 = this.byId("ersteller_pastrterm2").getDateValue();
+
+            let oHeaderData = this.getView().getModel("IT_HEADER_MODEL").getData();
+            let oDetailData = this.getView().getModel("IT_DETAIL_MODEL").getData();
+
             let check = true;
-            if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
-                check = false
+            for (let i = 0; i < oHeaderData.length; i++) {
+                if (String(werks) === String(oHeaderData[i].IT_HEADER_WERKS)){
+                    check = true;
+                    break;
+                } else {
+                    check = false;
+                }
+
             }
-            this._onEnabled(!this.globalCheck("Input", _this), !this.globalCheck("Date", _this), check);
+            if (!this.globalCheck("Input", _this) && !this.globalCheck("Date", _this)) {
+                this._onEnabled(true, true, false);
+                return;
+            } else if (!this.globalCheck("Input", _this) || !this.globalCheck("Date", _this)){
+                this._onEnabled(true, true, false);
+                return;
+            } else {
+                if (check) {
+                    this.byId("werks").setValueState("None")
+                } else {
+                    this.byId("werks").setValueState("Error")
+                    this.byId("werks").setValueStateText("플랜트가 일치하지 않습니다.");
+                    this._onEnabled(true, true, false);
+                    return;
+                }
+            }
             // this._Popover();
 
             // console.log(werks);
@@ -450,10 +475,6 @@ sap.ui.define([
                 MessageToast.show("값이 올바르지 않습니다.");
                 return;
             }
-
-
-            let oHeaderData = this.getView().getModel("IT_HEADER_MODEL").getData();
-            let oDetailData = this.getView().getModel("IT_DETAIL_MODEL").getData();
 
             let filterData = oHeaderData.filter(function(item) {
                 return String(item["IT_HEADER_PRUEFLOS"]).includes(prueflos);

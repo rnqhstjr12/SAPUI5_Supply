@@ -188,6 +188,27 @@
           "target": [
             "spc3"
           ]
+        },
+        {
+          "name": "spc2_1",
+          "pattern": "spc2_1",
+          "target": [
+            "spc2_1"
+          ]
+        },
+        {
+          "name": "spc2_2",
+          "pattern": "spc2_2",
+          "target": [
+            "spc2_2"
+          ]
+        },
+        {
+          "name": "spc2_3",
+          "pattern": "spc2_3",
+          "target": [
+            "spc2_3"
+          ]
         }
       ],
       "targets": {
@@ -302,6 +323,27 @@
           "clearControlAggregation": false,
           "viewId": "spc3",
           "viewName": "spc3"
+        },
+        "spc2_1": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "spc2_1",
+          "viewName": "spc2_1"
+        },
+        "spc2_2": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "spc2_2",
+          "viewName": "spc2_2"
+        },
+        "spc2_3": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "spc2_3",
+          "viewName": "spc2_3"
         }
       }
     },

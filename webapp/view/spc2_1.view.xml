@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="project1.controller.spc1"
+	controllerName="project1.controller.spc2_1"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
@@ -12,7 +12,7 @@
 		<f:title>
 			<f:DynamicPageTitle >
 				<f:heading>
-					<Title text="중량검사 결과관리"/>
+					<Title text="공정검사 결과관리 APP"/>
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -26,7 +26,7 @@
 								<layout:GridData span="XL2 L2 M2 S2"/>
 							</layoutData>
 						</Label>
-						<ComboBox id="werks" 
+						<ComboBox id="I_WERKS" 
 							fieldGroupIds="Required,Search,Input" 
 							change="onLiveChange" 
 							items="{IT_HEADER_MODEL>/}"
@@ -42,7 +42,7 @@
 								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
 							</layoutData>
 						</Label>
-						<ComboBox id="matnr" items="{IT_HEADER_MODEL>/}">
+						<ComboBox id="I_MATNR" items="{IT_HEADER_MODEL>/}">
 							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_MATNR}" text="{IT_HEADER_MODEL>IT_HEADER_MATNR}" />
 							<layoutData>
 								<layout:GridData span="XL2 L2 M2 S4"/>
@@ -53,8 +53,8 @@
 								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
 							</layoutData>
 						</Label>
-						<ComboBox id="prueflos" items="{IT_HEADER_MODEL>/}">
-							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_PRUEFLOS}" text="{IT_HEADER_MODEL>IT_HEADER_PRUEFLOS}" />
+						<ComboBox id="I_AUFNR" items="{IT_HEADER_MODEL>/}">
+							<core:Item key="{IT_HEADER_MODEL>IT_HEADER_AUFNR}" text="{IT_HEADER_MODEL>IT_HEADER_PRUEFLOS}" />
 							<layoutData>
 								<layout:GridData span="XL2 L2 M2 S4"/>
 							</layoutData>
@@ -70,37 +70,13 @@
 								<layout:GridData span="XL2 L2 M2 S4"/>
 							</layoutData>
 						</MultiComboBox>
-						<Label text="구분">
-							<layoutData>
-								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
-							</layoutData>
-						</Label>
-						<MultiComboBox id="gub2">
-							<core:Item key="finished" text="완제품" />
-							<core:Item key="charge" text="충전" />
-							<layoutData>
-								<layout:GridData span="XL2 L2 M2 S4"/>
-							</layoutData>
-						</MultiComboBox>
-						<Label text="근무조">
-							<layoutData>
-								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
-							</layoutData>
-						</Label>
-						<MultiComboBox id="gub1">
-							<core:Item key="day" text="주간" />
-							<core:Item key="night" text="야간" />
-							<layoutData>
-								<layout:GridData span="XL2 L2 M2 S4"/>
-							</layoutData>
-						</MultiComboBox>
 						<Label text="오더 시작일">
 							<layoutData>
 								<layout:GridData span="XL2 L2 M2 S2" linebreak="true"/>
 							</layoutData>
 						</Label>
 						<DatePicker 
-							id="ersteldat1"
+							id="I_GSTRP"
 							displayFormat="yyyy.MM.dd"
 							valueFormat="yyyy.MM.dd"
 							change="onDateCheck">
@@ -114,7 +90,7 @@
 							</layoutData>
 						</Label>
 						<DatePicker 
-							id="ersteldat2"
+							id="I_GLTRP"
 							displayFormat="yyyy.MM.dd"
 							valueFormat="yyyy.MM.dd"
 							change="onDateCheck">
@@ -128,7 +104,7 @@
 							</layoutData>
 						</Label>
 						<DatePicker 
-							id="ersteller_pastrterm1" 
+							id="PASTRTERM" 
 							value="{path : ''}"
 							displayFormat="yyyy.MM.dd"
 							valueFormat="yyyy.MM.dd"
@@ -145,7 +121,7 @@
 							</layoutData>
 						</Label>
 						<DatePicker 
-							id="ersteller_pastrterm2"
+							id="PAENDTERM"
 							displayFormat="yyyy.MM.dd"
 							valueFormat="yyyy.MM.dd"
 							change="onDateCheck">

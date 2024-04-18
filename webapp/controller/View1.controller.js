@@ -36,6 +36,9 @@ sap.ui.define([
             },
             onSPC: function () {
                 this.getView().getController().getOwnerComponent().getRouter().navTo("spc1");
+            },
+            onSPC2: function () {
+                this.getView().getController().getOwnerComponent().getRouter().navTo("spc2_1");
             }
         });
     });

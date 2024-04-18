@@ -1,0 +1,69 @@
+    <form:SimpleForm >
+        <form:content>
+            <Label text="규격">
+                <layoutData>
+                    <layout:GridData span="XL2 L2 M2 S2"/>
+                </layoutData>
+            </Label>
+            <Text text="{IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_SOLLWERT}">
+                <layoutData>
+                    <layout:GridData span="XL2 L2 M2 S2"/>
+                </layoutData>
+            </Text>
+            <Label text="기준">
+                <layoutData>
+                    <layout:GridData span="XL2 L2 M2 S2"/>
+                </layoutData>
+            </Label>
+            <Text text="{IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_TOLERANZOB} ~ {IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_TOLERANZUN}">
+                <layoutData>
+                    <layout:GridData span="XL2 L2 M2 S2"/>
+                </layoutData>
+            </Text>
+            <Label text="단위">
+                <layoutData>
+                    <layout:GridData span="XL2 L2 M2 S2"/>
+                </layoutData>
+            </Label>
+            <Text text="{IT_DETAIL_DETAIL_MODEL>/IT_DETAIL_PROBEMGEH}">
+                <layoutData>
+                    <layout:GridData span="XL2 L2 M2 S2"/>
+                </layoutData>
+            </Text>
+        </form:content>
+    </form:SimpleForm>
+    <table:Table 
+        id="tableId"
+        selectionMode="None" 
+        rows="{IT_DETAIL_DETAIL_MODEL>/IT_MULTI}"
+        visibleRowCountMode="Auto"
+        >
+        <table:columns>
+            <table:Column width="5%" hAlign="Center">
+                <Label text="No."/>
+                <table:template>
+                    <Text text="{= parseInt(${IT_DETAIL_DETAIL_MODEL>MERKNR})}" />
+                </table:template>
+            </table:Column>
+            <table:Column hAlign="Center">
+                <Label text="결과"/>
+                <table:template>
+                    <Input 
+                        value="{IT_DETAIL_DETAIL_MODEL>ORIGINAL_INPUT}" 
+                        liveChange="onValueInputLiveChange" 
+                        change="onValueInputChange"
+                        textAlign="Right"
+                        />
+                </table:template>
+            </table:Column>
+            <table:Column hAlign="Center">
+                <Label text="평가"/>
+                <table:template>
+                    <core:Icon 
+                        src="{= ${IT_DETAIL_DETAIL_MODEL>DETAILERG} ? 'sap-icon://accept' : ${IT_DETAIL_DETAIL_MODEL>DETAILERG} === false ? 'sap-icon://decline' : null }" 
+                        color="{= ${IT_DETAIL_DETAIL_MODEL>DETAILERG} ? 'green' : 'red'}"
+                        />
+                </table:template>
+            </table:Column>
+        </table:columns>
+    </table:Table>

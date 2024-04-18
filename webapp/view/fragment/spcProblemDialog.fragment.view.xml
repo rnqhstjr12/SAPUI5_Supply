@@ -1,0 +1,34 @@
+<form:SimpleForm >
+    <form:content>
+        <Label text="문제내역">
+            <layoutData>
+                <layout:GridData span="XL12 L12 M12 S12"/>
+            </layoutData>
+        </Label>
+        <TextArea width="100%" cols="60" rows="3" value="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_REASON}">
+            <layoutData>
+                <layout:GridData span="XL12 L12 M12 S12"/>
+            </layoutData>
+        </TextArea>
+        <Label text="원인">
+            <layoutData>
+                <layout:GridData span="XL12 L12 M12 S12"/>
+            </layoutData>
+        </Label>
+        <TextArea width="100%" cols="60" rows="3" value="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_SOLVE}">
+            <layoutData>
+                <layout:GridData span="XL12 L12 M12 S12"/>
+            </layoutData>
+        </TextArea>
+        <Label text="조치사항">
+            <layoutData>
+                <layout:GridData span="XL12 L12 M12 S12"/>
+            </layoutData>
+        </Label>
+        <TextArea width="100%" cols="60" rows="3" value="{IT_HEADER_DETAIL_MODEL>/IT_HEADER_RESULT}">
+            <layoutData>
+                <layout:GridData span="XL12 L12 M12 S12"/>
+            </layoutData>
+        </TextArea>
+    </form:content>
+</form:SimpleForm>

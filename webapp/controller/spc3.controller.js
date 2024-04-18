@@ -10,7 +10,7 @@ sap.ui.define([
             const myRoute = this.getOwnerComponent().getRouter().getRoute("spc3");
             myRoute.attachPatternMatched(this.onMyRoutePatternMatched, this);
         },
-        onMyRoutePatternMatched: function () {
+        onMyRoutePatternMatched: async function () {
             DetailData = JSON.parse(localStorage.getItem("DetailData"));
             Search_IT_DetailData = JSON.parse(localStorage.getItem("Search_IT_DetailData"));
 
@@ -23,9 +23,22 @@ sap.ui.define([
             this._globalVarSet();
         },
 
-        _globalVarSet: function () {
+        // onAfterRendering: function () {
+        //     let oTable = this.byId("tableId");
+        //     let aRows = oTable.getRows();
+
+        //     aRows.forEach(function(oRow) {
+        //         oRow.attachBrowserEvent('blur', function () {
+        //             oRow.setValueState("None");
+        //         });
+        //     });
+        //     console.log(aRows);
+        // },
+
+        _globalVarSet: async function () {
             _this = this;
-            this.byId("tableId").setMinAutoRowCount(this.getView().getModel("IT_DETAIL_DETAIL_MODEL").getProperty("/IT_MULTI").length);
+            let oTable = this.byId("tableId");
+            oTable.setMinAutoRowCount(this.getView().getModel("IT_DETAIL_DETAIL_MODEL").getProperty("/IT_MULTI").length);
         },
         
         _ViewData: function () {
@@ -40,6 +53,7 @@ sap.ui.define([
                 }
             }
             this.getView().setModel(new JSONModel(headerDetail), "IT_DETAIL_DETAIL_MODEL");
+            
         },
 
         _tableSet: function () {
@@ -68,7 +82,9 @@ sap.ui.define([
                 ]
             }
             
-            oModel.setProperty("/IT_MULTI", IT_MULTI)
+            oModel.setProperty("/IT_MULTI", IT_MULTI);
+
+            this.getView().getModel("IT_DETAIL_DETAIL_MODEL").refresh();
         },
 
         onValueInputChange: function (oEvent) {
@@ -88,8 +104,10 @@ sap.ui.define([
 
             if (String(iInput).length <= 0){
                 inputRowData.DETAILERG = null;
+                oEvent.getSource().setValueState("None");
+            } else {
+                oEvent.getSource().setValueState("None");
             }
-            
         },
 
         onValueInputLiveChange: function (oEvent) {
@@ -109,18 +127,15 @@ sap.ui.define([
                 }
             }
             
-            
-            
-            
             if (iInput) {
                 let check = /^[0-9]+$/;
                 if (!check.test(iInput)) {
                     oEvent.getSource().setValue(iInput.replace(/\D/g, ''));
                     oEvent.getSource().setValueState("Error");
                     oEvent.getSource().setValueStateText("숫자만 입력할 수 있습니다.");
-                    // setTimeout(function() {
-                    //     oEvent.getSource().setValueState("None");
-                    // }, 500);
+                    setTimeout(function() {
+                        oEvent.getSource().setValueState("None");
+                    }, 500);
                 } else {
                     oEvent.getSource().setValueState("None");
                 }

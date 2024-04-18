@@ -1,0 +1,141 @@
+<mvc:View
+	controllerName="project1.controller.spc2_2"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:table="sap.ui.table"
+    xmlns:layout="sap.ui.layout"
+	height="100%"
+>
+	<f:DynamicPage toggleHeaderOnTitleClick="true" showFooter="true" >
+		<f:title>
+			<f:DynamicPageTitle >
+				<f:heading>
+                    <HBox>
+                        <Button press="onBack" type="Back"/>
+    					<Title text="공정 검사결과 로트리스트"/>
+                    </HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+        <f:header>
+            <f:DynamicPageHeader >
+                <f:content>
+                    <form:SimpleForm width="100%">
+                        <form:content >
+                            <Label text="결과입력" >
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M6 S6"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="resSelect" change="onSelectChange" >
+                                <core:Item text="전체" key="all"/>
+                                <core:Item text="O" key="O"/>
+                                <core:Item text="X" key="X"/>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S6"/>
+                                </layoutData>
+                            </Select>
+                            <Label text="ERP 전송">
+                                <layoutData>
+                                    <layout:GridData span="XL2 L2 M6 S6"/>
+                                </layoutData>
+                            </Label>
+                            <Select id="erpSelect">
+                                <core:Item text="전체" key="all"/>
+                                <core:Item text="O" key="O"/>
+                                <core:Item text="X" key="X"/>
+                                <layoutData>
+                                    <layout:GridData span="XL4 L4 M6 S6"/>
+                                </layoutData>
+                            </Select>
+                            <Toolbar >
+                                <ToolbarSpacer/>
+                                <Button text="검색" press="onHeaderSearch" type="Emphasized"/>
+                                <Button text="초기화" press="onHeaderSearchRefresh" type="Emphasized"/>
+                            </Toolbar>
+                        </form:content>
+                    </form:SimpleForm>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+		<f:content>
+            <VBox alignContent="Center">
+                <Title text="공정 검사로트 리스트 ({= ${IT_HEADER_MODEL>/}.length})" titleStyle="H4" class="sapUiTinyMarginBottom"/>
+                <Table 
+                    id="SpcTable" 
+                    items="{IT_HEADER_MODEL>/}" 
+                    mode="SingleSelectMaster" 
+                    selectionChange="onSelectRow"
+                    fixedLayout="Strict"
+                    backgroundDesign="Solid"
+                    alternateRowColors="true">
+                    <columns>
+                        <Column hAlign="Center" >
+                            <Label text="플랜트" />
+                        </Column>
+                        <Column hAlign="Left" >
+                            <Label text="플랜트 내역"/>
+                        </Column>
+                        <Column hAlign="Center" >
+                            <Label text="자재 코드"/>
+                        </Column>
+                        <Column hAlign="Left" >
+                            <Label text="자재 내역"/>
+                        </Column>
+                        <Column hAlign="Right" >
+                            <Label text="생산오더"/>
+                        </Column>
+                        <Column hAlign="Center" >
+                            <Label text="생산라인"/>
+                        </Column>
+                        <Column hAlign="Right" >
+                            <Label text="검사로트"/>
+                        </Column>
+                        <Column hAlign="Right" >
+                            <Label text="로트수량"/>
+                        </Column>
+                        <Column hAlign="Center" >
+                            <Label text="단위"/>
+                        </Column>
+                        <Column hAlign="Center" >
+                            <Label text="검사 시작일"/>
+                        </Column>
+                        <Column hAlign="Center" >
+                            <Label text="결과입력"/>
+                        </Column>
+                        <Column hAlign="Center" >
+                            <Label text="ERP 전송"/>
+                        </Column>
+                    </columns>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_WERKS}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_WERKS_TX}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_MATNR}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_MAKTX}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_AUFNR}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_MDV01}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_KTEXT}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_PRUEFLOS}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_LOSMENGE}" />
+                            <Text text="{IT_HEADER_MODEL>IT_HEADER_MENGENEINH}" />
+                            <Text text="{= ${IT_HEADER_MODEL>TEST_CHECK} === true ? 'O' : null}" />
+                            <Text text="{= ${IT_HEADER_MODEL>ERP_CHECK} === true ? 'O' : null}" />
+                        </cells>
+                    </ColumnListItem >
+                </Table>
+            </VBox>
+		</f:content>
+        <f:footer>
+            <OverflowToolbar >
+                    <Button text="돌아가기" type="Emphasized" press="onBack"/>
+                    <ToolbarSpacer/>
+                    <Button text="새로고침" type="Emphasized" press="onRefresh" class="sapUiTinyMarginEnd"/>
+                    <Button text="ERP 결과전송" type="Emphasized" press="onERPTransfer"/>
+            </OverflowToolbar>
+        </f:footer>
+	</f:DynamicPage>
+</mvc:View>
